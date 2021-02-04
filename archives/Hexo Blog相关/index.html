@@ -1,0 +1,193 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Plams,blog" />
+    <meta name="generator" content="Maverick 1.1" />
+    <meta name="template" content="Galileo" />
+    <link rel="alternate" type="application/rss+xml" title="Plams的个人博客 &raquo; RSS 2.0" href="/feed/index.xml" />
+    <link rel="alternate" type="application/atom+xml" title="Plams的个人博客 &raquo; ATOM 1.0" href="/feed/atom/index.xml" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/galileo-3f4dcc35c9.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/ExSearch/ExSearch-182e5a8868.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/katex.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700&display=swap">
+    <script>
+        var ExSearchConfig = {
+            root: "",
+            api: "https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/35ec923c9af3f9bfe45a2a09defd89ab.json"
+        }
+    </script>
+    
+<title>Hexo Blog相关 - Plams的个人博客</title>
+<meta name="author" content="" />
+<meta name="description" content="SEO" />
+<meta property="og:title" content="Hexo Blog相关 - Plams的个人博客" />
+<meta property="og:description" content="SEO" />
+<meta property="og:site_name" content="Plams的个人博客" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/archives/Hexo Blog相关/" />
+<meta property="og:image" content="" />
+<meta property="article:published_time" content="2017-11-30T21:34:00-00.00" />
+<meta name="twitter:title" content="Hexo Blog相关 - Plams的个人博客" />
+<meta name="twitter:description" content="SEO" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:image" content="" />
+
+
+    
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+
+    </head>
+    
+    <body>
+        
+        <div class="container">
+            <header id="ga-header">
+                <div first>
+                    <aside id="ga-brand">
+                        <h1 class="brand"><a class="no-style" href="/">Plams的个人博客</a></h1>
+                        <p>Destination Determination Deliberation</p>
+                    </aside>
+                </div>
+                <div second id="ga-nav">
+                    <nav class="navs">
+                        <ul><li><a class="ga-highlight" href="/" target="_self">首页</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/archives/" target="_self">归档</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/about/" target="_self">关于</a></li><span class="separator">·</span><li><a href="#" target="_self" class="search-form-input ga-highlight">搜索</a></li></ul>
+                    </nav>
+                </div>
+            </header>
+            <div class="wrapper">
+                
+<main>    
+    <section class="ga-section ga-content">
+        <article class="yue">
+            <h1 class="ga-post_title">Hexo Blog相关</h1>
+            <span class="ga-post_meta ga-mono">
+                <span></span>
+                <time>
+                    2017-11-30
+                </time>
+                
+                in <a no-style class="category" href="/category/Default/">
+                    Default
+                </a>
+                
+                
+            </span>
+            <div class="ga-content_body">
+                <h2>SEO</h2>
+<p><a href="http://www.jianshu.com/p/efaf72aab32e?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">http://www.jianshu.com/p/efaf72aab32e?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation</a></p>
+<h2>CI时, npm安装失败</h2>
+<p>网络抽风, 自求多福. 
+或者npm换个外国的源? 实在抽风严重就换个taobao源先试试</p>
+<!-- more -->
+
+<h2>CI时, tag检索问题</h2>
+<p>默认的node.js版本太低</p>
+<p>appveyor.yml修改为</p>
+
+<pre><code>clone_depth: 5
+
+environment:
+  access_token:
+    secure: *******************************************************
+    nodejs_version: "8"
+
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - node --version
+  - npm --version
+  - npm install
+  - npm install hexo-cli -g
+
+build_script:
+  - hexo generate
+
+...</code></pre>
+<h2>CI: 在github上托管_post, 自动deploy</h2>
+<p><a href="https://formulahendry.github.io/2016/12/04/hexo-ci/">https://formulahendry.github.io/2016/12/04/hexo-ci/</a></p>
+<p><figure  size-undefined><img width="-1" height="-1" src="http://otivusbsc.bkt.clouddn.com//579ad34f-95ba-4310-81f4-c7bbe0b29c7d" /></figure></p>
+<h1>参考:</h1>
+<p><a href="https://yq.aliyun.com/articles/8607">https://yq.aliyun.com/articles/8607</a></p>
+
+            </div>
+        </article>
+        <div id="ga-tags">
+    
+</div>
+    </section>
+
+    
+<section id="ga-content_pager">
+
+    <div class="next">
+        <a class="ga-highlight" href="/archives/记一个巨傻×的错误/">记一个巨傻×的错误</a>
+        <p class="yue">前两天作分类错误率一直有问题, 排查了一圈最后确定了问题出在数据上, 重新又检查了一遍生成tfrecords的代码:</p>
+    </div>
+
+
+    <div class="prev">
+        <a class="ga-highlight" href="/archives/随机的将data分为两部分/">随机的将data分为两部分</a>
+        <p class="yue">将40000个文件随机分一部分测试集出去</p>
+    </div>
+
+</section>
+
+
+    
+
+</main>
+
+                <footer class="ga-mono" id="ga-footer">
+                    <section>
+                        <span id="ga-uptime"></span>
+                        <span class="brand">Plams的个人博客</span>
+                    </section>
+                    <section>
+                        <p class="copyright">
+                            <span>Copyright © 2021 Plams</span>
+                            <span>Powered by <a no-style href="https://github.com/AlanDecode/Maverick" target="_blank">Maverick & Galileo</a></span>
+                        </p>
+                        <div class="copyright">
+                            <span class="footer-addon">
+                                
+                            </span>
+                            <nav class="social-links">
+                                <ul><li><a class="no-style" title="GitHub" href="https://github.com/lishiyuwhu" target="_blank"><i class="gi gi-github"></i>GitHub</a></li></ul>
+                            </nav>
+                        </div>
+                    </section>
+                    <script>
+                        var site_build_date = "2018-3-28T16:16+08:00"
+                    </script>
+                    <script src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/galileo-dc4baa7cf4.js"></script>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!--katex-->
+    <script defer src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/katex.min.js"></script>
+    <script>
+    mathOpts = {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+        ]
+    };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/auto-render.min.js" onload="renderMathInElement(document.body, mathOpts);"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/ExSearch/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/ExSearch/ExSearch-493cb9cd89.js"></script>
+
+    
+    </body>
+</html>

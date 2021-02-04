@@ -1,0 +1,542 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Plams,blog" />
+    <meta name="generator" content="Maverick 1.1" />
+    <meta name="template" content="Galileo" />
+    <link rel="alternate" type="application/rss+xml" title="Plams的个人博客 &raquo; RSS 2.0" href="/feed/index.xml" />
+    <link rel="alternate" type="application/atom+xml" title="Plams的个人博客 &raquo; ATOM 1.0" href="/feed/atom/index.xml" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/galileo-3f4dcc35c9.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/ExSearch/ExSearch-182e5a8868.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/katex.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700&display=swap">
+    <script>
+        var ExSearchConfig = {
+            root: "",
+            api: "https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/35ec923c9af3f9bfe45a2a09defd89ab.json"
+        }
+    </script>
+    
+<title>算法4 - Plams的个人博客</title>
+<meta name="author" content="" />
+<meta name="description" content="01背包" />
+<meta property="og:title" content="算法4 - Plams的个人博客" />
+<meta property="og:description" content="01背包" />
+<meta property="og:site_name" content="Plams的个人博客" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/archives/算法4/" />
+<meta property="og:image" content="" />
+<meta property="article:published_time" content="2018-04-03T16:07:00-00.00" />
+<meta name="twitter:title" content="算法4 - Plams的个人博客" />
+<meta name="twitter:description" content="01背包" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:image" content="" />
+
+
+    
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+
+    </head>
+    
+    <body>
+        
+        <div class="container">
+            <header id="ga-header">
+                <div first>
+                    <aside id="ga-brand">
+                        <h1 class="brand"><a class="no-style" href="/">Plams的个人博客</a></h1>
+                        <p>Destination Determination Deliberation</p>
+                    </aside>
+                </div>
+                <div second id="ga-nav">
+                    <nav class="navs">
+                        <ul><li><a class="ga-highlight" href="/" target="_self">首页</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/archives/" target="_self">归档</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/about/" target="_self">关于</a></li><span class="separator">·</span><li><a href="#" target="_self" class="search-form-input ga-highlight">搜索</a></li></ul>
+                    </nav>
+                </div>
+            </header>
+            <div class="wrapper">
+                
+<main>    
+    <section class="ga-section ga-content">
+        <article class="yue">
+            <h1 class="ga-post_title">算法4</h1>
+            <span class="ga-post_meta ga-mono">
+                <span></span>
+                <time>
+                    2018-04-03
+                </time>
+                
+                in <a no-style class="category" href="/category/Default/">
+                    Default
+                </a>
+                
+                
+            </span>
+            <div class="ga-content_body">
+                <h2>01背包</h2>
+<!-- more -->
+
+<h3>DP</h3>
+<p>①、确认子问题和状态 
+　　01背包问题需要求解的就是，为了体积V的背包中物体总价值最大化，N件物品中第i件应该放入背包中吗？（其中每个物品最多只能放一件） 
+　　为此，我们定义一个二维数组，其中每个元素代表一个状态，即前i个物体中若干个放入体积为V背包中最大价值。数组为：f[N][V]，其中fij表示前i件中若干个物品放入体积为j的背包中的最大价值。 
+②、初始状态 
+　　初始状态为f[0][0−V]和f[0−N][0]都为0，前者表示前0个物品（也就是空物品）无论装入多大的包中总价值都为0，后者表示体积为0的背包啥价值的物品都装不进去。 
+③、转移函数</p>
+
+<pre><code>if (背包体积j小于物品i的体积)
+    f[i][j] = f[i-1][j] //背包装不下第i个物体，目前只能靠前i-1个物体装包
+else
+    f[i][j] = max(f[i-1][j], f[i-1][j-Vi] + Wi)</code></pre>
+<p>到这一步，可以确定的是可能获得的最大价值，但是我们并不清楚具体选择哪几样物品能获得最大价值。</p>
+<p>另起一个 x[ ] 数组，x[i]=0表示不拿，x[i]=1表示拿。</p>
+<p>m[n][c]为最优值，如果m[n][c]=m[n-1][c] ,说明有没有第n件物品都一样，则x[n]=0 ; 否则 x[n]=1。当x[n]=0时，由x[n-1][c]继续构造最优解；当x[n]=1时，则由x[n-1][c-w[i]]继续构造最优解。以此类推，可构造出所有的最优解。</p>
+
+<pre><code>void traceback()  
+{  
+    for(int i=n;i&gt;1;i--)  
+    {  
+        if(m[i][c]==m[i-1][c])  
+            x[i]=0;  
+        else  
+        {  
+            x[i]=1;  
+            c-=w[i];  
+        }  
+    }  
+    x[1]=(m[1][c]&gt;0)?1:0;  
+}</code></pre>
+<h2>递归次数</h2>
+<p>下列程序执行后,输出的结果为()</p>
+<div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="kt">int</span> <span class="n">cnt</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">fib</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+       <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
+       <span class="k">return</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="k">else</span>
+       <span class="k">return</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span><span class="mi">-1</span><span class="p">)</span><span class="o">+</span><span class="n">fib</span><span class="p">(</span><span class="n">n</span><span class="mi">-2</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+   <span class="n">fib</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="n">cnt</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+<p>f(8)------------- 1
+f(7)-------------1
+f(6)-------1+1=2
+f(5)------2+1 = 3
+f(4)-------------5
+f(3)-------------8
+f(2)-------------13
+f(1)-------------21
+f(0)-------------13
+1+1+2+3+5+8+13+21+13=67</p>
+<h2>分箱问题</h2>
+<p>问题
+假设12个销售价格记录组已经排序如下：5, 10, 11, 13, 15,35, 50, 55, 72, 92, 204, 215 使用如下每种方法将它们划分成四个箱。等频（等深）划分时，15在第几个箱子内？等宽划分时在第几个箱？</p>
+<p>分箱问题分为有监督分箱和无监督分箱。</p>
+<p>无监督分箱
+等宽分箱 
+     将变量的取值范围分为k个等宽的区间，每个区间当作一个分箱。 
+     在本问题中变量的取值范围为5–215，k为4.（215-5）/4=52.5划分点为57.5，110，162.5，4个箱中数据为 
+     A箱：5, 10, 11, 13, 15,35, 50, 55 
+     B箱：72, 92 
+     C箱：空 
+     D箱：204, 215
+等频（等深）分箱 
+     把观测值按照从小到大的顺序排列，根据观测的个数等分为k部分，每部分当作一个分箱，例如，数值最小的1/k比例的观测形成第一个分箱，等等。 
+     在本问题中观测个数为12.k=4.每箱里有3个数据。 
+     A箱：5, 10, 11, 
+B箱：13, 15,35 
+C箱： 50, 55，72 
+D箱：92 
+，204, 215 
+k聚类分箱 
+     用k均值聚类法将观测值聚为k类，但在聚类过程中需要保证分箱的有序性：第一个分箱中所有观测值都要小于第二个分箱中的观测值，第二个分箱中所有观测值都要小于第三个分箱中的观测值。手算太费时间，笔试中应该不会出现。
+有监督分箱
+在分箱时考虑因变量的取值，使得分箱后达到最小（minimumentropy）或最小描述长度（minimumdescriptionlength）。</p>
+<p>（1）假设因变量为分类变量，可取值1，…，J。令pl（j）表示第l个分箱内因变量取值为j的观测的比例，l=1，…，k，j=1，…，J；那么第l个分箱的熵值为Jj=1［-pl（j）×log（pl（j））］。如果第l个分箱内因变量各类别的比例相等，即pl（1）=…=pl（J）=1/J，那么第l个分箱的熵值达到最大值；如果第l个分箱内因变量只有一种取值，即某个pl（j）等于1而其他类别的比例等于0，那么第l个分箱的熵值达到最小值。</p>
+<p>（2）令rl表示第l个分箱的观测数占所有观测数的比例；那么总熵值为kl= 1rl×Jj=1［-pl（j）×log（pl（j ））］。需要使总熵值达到最小，也就是使分箱能够最大限度地区分因变量的各类别。</p>
+<h2>gets getchar scanf getline</h2>
+<p>gets是得到一整行的字符串;
+getchar是得到一个字符；
+scanf("%s")是得到一个连续的字符串，遇到空格、回车会自动终止
+getline 一行扔掉换行符</p>
+<h2>卡兰特数列</h2>
+<p><a href="https://www.zhihu.com/question/25072237/answer/30111179">https://www.zhihu.com/question/25072237/answer/30111179</a></p>
+<h2>坐标点的表示</h2>
+<p>P为给定的二维平面整数点集。定义 P 中某点x，如果x满足 P 中任意点都不在 x 的右上方区域内（横纵坐标都大于x），则称其为“最大的”。求出所有“最大的”点的集合。（所有点的横坐标和纵坐标都不重复, 坐标轴范围在[0, 1e9) 内）</p>
+<p>如下图：实心点为满足条件的点的集合。请实现代码找到集合 P 中的所有 ”最大“ 点的集合并输出。</p>
+<p>输入描述:
+第一行输入点集的个数 N， 接下来 N 行，每行两个数字代表点的 X 轴和 Y 轴。
+对于 50%的数据,  1 &lt;= N &lt;= 10000;
+对于 100%的数据, 1 &lt;= N &lt;= 500000;</p>
+<p>输出描述:
+输出“最大的” 点集合， 按照 X 轴从小到大的方式输出，每行两个数字分别代表点的 X 轴和 Y轴。
+示例1
+输入
+5
+1 2
+5 3
+4 6
+7 5
+9 0
+输出
+4 6
+7 5
+9 0</p>
+<p>一个点右上方没有点，也就是一个点右边的点全都在它的下边。
+所以我们将点按照横坐标从左到右排序，从右开始扫，找出右边点最大纵坐标。
+那么一个点的纵坐标比右边的点纵坐标最大值还大，就说明这个点右边的点全在它的下面。
+这样选择点就可以选出所有符合条件的点了。</p>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="cp">#define pb push_back</span>
+<span class="cp">#define pr make_pair</span>
+<span class="cp">#define fi first</span>
+<span class="cp">#define se second</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">MAX_N</span> <span class="o">=</span> <span class="mf">5e5</span> <span class="o">+</span> <span class="mi">5</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">pii</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">pii</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">;</span>
+<span class="n">pii</span> <span class="n">ans</span><span class="p">[</span><span class="n">MAX_N</span><span class="p">];</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">limit</span><span class="p">;</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">y</span><span class="p">);</span>
+        <span class="n">p</span><span class="p">.</span><span class="n">pb</span><span class="p">(</span><span class="n">pr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="n">sort</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">p</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">limit</span> <span class="o">=</span> <span class="mi">-1</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">se</span> <span class="o">&gt;</span> <span class="n">limit</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">ans</span><span class="p">[</span><span class="n">num</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+            <span class="n">num</span><span class="o">++</span><span class="p">;</span>
+            <span class="n">limit</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">se</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">num</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">fi</span><span class="p">,</span> <span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">se</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+<h2>bit-map</h2>
+<p><a href="https://blog.csdn.net/BillCYJ/article/details/78948977">https://blog.csdn.net/BillCYJ/article/details/78948977</a></p>
+<p>游戏里面有很多各式各样的任务，其中有一种任务玩家只能做一次，这类任务一共有1024个，任务ID范围[1,1024]。请用32个unsigned int类型来记录着1024个任务是否已经完成。初始状态都是未完成。 输入两个参数，都是任务ID，需要设置第一个ID的任务为已经完成；并检查第二个ID的任务是否已经完成。 输出一个参数，如果第二个ID的任务已经完成输出1，如果未完成输出0。如果第一或第二个ID不在[1,1024]范围，则输出-1。 
+输入描述:
+输入包括一行,两个整数表示人物ID.</p>
+<p>输出描述:
+输出是否完成</p>
+<p>输入例子1:
+1024 1024</p>
+<p>输出例子1:
+1</p>
+<div class="highlight"><pre><span></span><span class="c1">//解释：1024=32*32,因此可用32个整数表示1024位(因为每个整数32位)</span>
+<span class="c1">//因为任务ID范围是1~1024,所以减1转化为0~1023</span>
+<span class="c1">//然后任务ID除以32，商为存到哪个整数，余数为该整数对应位（置1即可）</span>
+<span class="c1">//注：除以32相当于直接右移5位，对32取余相当于&quot;与31&quot;（这个技巧只对2的次方数有效）．</span>
+<span class="c1">//拓展：大数据处理，可自行查找1-bitmap和2-bitmap．</span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+    
+<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+    
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">id1</span><span class="p">,</span> <span class="n">id2</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">id1</span><span class="o">&gt;&gt;</span><span class="n">id2</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">id2</span><span class="o">&gt;=</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">id2</span><span class="o">&lt;=</span><span class="mi">1024</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="mi">-1</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+            <span class="k">continue</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">arr</span><span class="p">[(</span><span class="n">id1</span><span class="mi">-1</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">5</span><span class="p">]</span> <span class="o">|=</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">id1</span><span class="o">&amp;</span><span class="mi">31</span><span class="p">));</span>
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="p">(</span> <span class="p">(</span><span class="n">arr</span><span class="p">[(</span><span class="n">id2</span><span class="mi">-1</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">5</span><span class="p">]</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">id2</span><span class="o">&amp;</span><span class="mi">31</span><span class="p">)))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+<h2>筛法素数</h2>
+<div class="highlight"><pre><span></span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">1000</span><span class="p">;</span><span class="o">++</span><span class="n">i</span><span class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">*</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">1000</span><span class="p">;</span><span class="o">++</span><span class="n">j</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]){</span>
+                <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+<h2>字符串转数字</h2>
+<p>atoi(temp.c_str())
+字符串转数字(后面要是一个c字符串指针, 所以c_str)</p>
+<p>string temp = to_string(num);</p>
+<p>输入一个数组 (size n1 n2 n3...)</p>
+<p>int size;
+cin &gt;&gt; size;
+vector<int> nums(size);
+for(size_t i = 0; i &lt; size; ++i)
+    cin &gt;&gt; nums[i];</p>
+<h2>最长公共连续子串</h2>
+<p>这题其实是动态规划的变形经典题型，应用动态规划的思想，创建一个二维数组dp[n][n]，其中dp[i][j]表示以s1第i个字符、s2第j个字符为结尾的最长公共子串长度，
+。如果s1[i]等于s2[j]，则dp[i-1][j-1]等于取到s1[i-1]和取到s2[j-1]时的最大连续子串长度加1，即dp[i][j]=dp[i-1][j-1]+1。</p>
+<h2>LCS 最大公共子序列</h2>
+<p><a href="https://blog.csdn.net/so_geili/article/details/53737001">https://blog.csdn.net/so_geili/article/details/53737001</a></p>
+<h2>KMP</h2>
+<p><a href="https://blog.csdn.net/starstar1992/article/details/54913261">https://blog.csdn.net/starstar1992/article/details/54913261</a></p>
+<p><a href="https://blog.csdn.net/v_july_v/article/details/7041827">https://blog.csdn.net/v_july_v/article/details/7041827</a></p>
+<h2>倒水问题</h2>
+<p>给定四个空杯子，容量分别为S1 S2 S3 S4，允许进行以下操作：</p>
+<ol>
+<li><p>将某个杯子接满水</p>
+</li>
+<li><p>将某个杯子里的水全部倒掉</p>
+</li>
+<li><p>将杯子A中的水倒进杯子B，直到A倒空或者B被倒满</p>
+</li>
+</ol>
+<p>问最少要多少步操作才能使得这四个杯子装的水分别为T1 T2 T3 T4</p>
+<p>输入描述:
+第一行四个非负整数S1 S2 S3 S4
+第二行四个非负整数T1 T2 T3 T4</p>
+<p>输出描述:
+最少的步数，若无法完成则输出-1
+示例1
+输入
+0 2 3 4
+0 1 2 4
+输出
+6
+说明
+过程如下：
+(0,0,0,0)-&gt;(0,2,0,0)-&gt;(0,2,3,0)-&gt;(0,2,0,3)-&gt;(0,0,2,3)-&gt;(0,2,2,3)-&gt;(0,1,2,4)</p>
+<p>链接：<a href="https://www.nowcoder.com/questionTerminal/9e988ccf4d324b6d8afe4b4b172968ee">https://www.nowcoder.com/questionTerminal/9e988ccf4d324b6d8afe4b4b172968ee</a>
+来源：牛客网</p>
+<h1>include<iostream></h1>
+<h1>include<cstdio></h1>
+<h1>include<cstring></h1>
+<h1>include<algorithm></h1>
+<h1>include<bitset></h1>
+<p>using namespace std;
+/<em>将4杯子倒水问题改为一个足够大的杯子倒向4个杯子</em>/
+bitset<17043521> Hash;/<em>（大小为64</em>64^4+64<em>64^3+64</em>64^2+64<em>64^1+64</em>64^0）记录每次操作后的ABCD杯子的当前容量是否已经存在过<em>/
+const int MAX_STEP = 100000;
+int WQ[MAX_STEP][6];/</em>记录每步操作后0和ABCD的当前容量，最后一个记录操作次数<em>/
+int Goal[5];/</em>0和ABCD杯子最终状态<em>/
+int Cap[5]; /</em>0和ABCD杯子的最大容量<em>/
+int goalval;
+int head = 0;
+int tail = 0;
+void movw(int numfrom, int numto, int other1,int other2,int other3)/</em>numfrom倒入numto<em>/
+{
+    int total = WQ[head][numfrom] + WQ[head][numto];/</em>numfrom和numto的总量*/
+    WQ[tail][other1] = WQ[head][other1];
+    WQ[tail][other2] = WQ[head][other2];
+    WQ[tail][other3] = WQ[head][other3];
+    WQ[tail][5] = WQ[head][5] + 1;</p>
+
+<pre><code>if (total&gt;Cap[numto])/*总量和被倒入杯子的容量大小；大于numfrom就有剩余的，否则全部倒入numto*/
+{
+    WQ[tail][numfrom] = total - Cap[numto];
+    WQ[tail][numto] = Cap[numto];
+}
+else
+{
+    WQ[tail][numfrom] = 0;
+    WQ[tail][numto] = total;
+}
+
+int hashval = WQ[tail][1] * 262144 + WQ[tail][2] * 4096 + WQ[tail][3] * 64 + WQ[tail][4];/*把ABCD杯子需要的状态抽象为一个值*/
+if (hashval == goalval) throw WQ[head][5] + 1;/*判断是否为最终状态*/
+
+if (!Hash[hashval])/*该次操作之后的状态之前未存在过并记录*/
+{
+    Hash[hashval] = true;
+    if (++tail == MAX_STEP) tail = 0;/*超出最大操作数*/
+}
+</code></pre>
+<p>}
+int main()
+{
+    Hash.reset();
+    scanf("%d %d %d %d", &amp;Cap[1], &amp;Cap[2], &amp;Cap[3],&amp;Cap[4]);
+    scanf("%d %d %d %d", &amp;Goal[1], &amp;Goal[2], &amp;Goal[3], &amp;Goal[4]);
+    head = 0;
+    tail = 0;
+    goalval = Goal[1] <em> 262144 + Goal[2] </em> 4096 + Goal[3]<em>64+Goal[4];/</em>把ABCD杯子需要的状态抽象为一个值<em>/
+    /</em>处理全部杯子中最后容量都为0的情况<em>/
+    if (Goal[1] == 0 &amp;&amp; Goal[2] == 0 &amp;&amp; Goal[3] == 0 &amp;&amp; Goal[4] == 0 ) {
+        printf("0");
+        return 0;
+    }
+    Cap[0] = 6400;/</em>0杯子为足够大的杯子，0杯子的容量<em>/
+    WQ[tail][0] = 6400;/</em>0杯子的当前容量<em>/
+    /</em>初始化ABCD杯子当前值为0<em>/
+    WQ[tail][1] = 0;
+    WQ[tail][2] = 0;
+    WQ[tail][3] = 0;
+    WQ[tail][4] = 0;
+    WQ[tail][5] = 0;
+    ++tail;
+    try {
+        /</em>尝试每一种操作<em>/
+        while (head != tail)
+        {
+            /</em>A导入B，外层if判断A中当前容量不为零，内层判断B的最大容量不为0*/
+            if (WQ[head][0]) {
+                if(Cap[1])
+                    movw(0, 1, 2, 3, 4);
+                if (Cap[2])
+                    movw(0, 2, 1, 3, 4);
+                if (Cap[3])
+                    movw(0, 3, 1, 2, 4);
+                if (Cap[4])
+                    movw(0, 4, 1, 2, 3);
+            }</p>
+
+<pre><code>        if (WQ[head][1]) {
+            if (Cap[0])
+            movw(1, 0, 2, 3, 4);
+            if (Cap[2])
+            movw(1, 2, 0, 3, 4);
+            if (Cap[3])
+            movw(1, 3, 0, 2, 4);
+            if (Cap[4])
+            movw(1, 4, 0, 2, 3);
+        }
+
+        if (WQ[head][2]) {
+            if (Cap[0])
+            movw(2, 0, 1, 3, 4);
+            if (Cap[1])
+            movw(2, 1, 0, 3, 4);
+            if (Cap[3])
+            movw(2, 3, 0, 1, 4);
+            if (Cap[4])
+            movw(2, 4, 0, 1, 3);
+        }
+
+        if (WQ[head][3]) {
+            if (Cap[0])
+            movw(3, 0, 1, 2, 4);
+            if (Cap[1])
+            movw(3, 1, 0, 2, 4);
+            if (Cap[2])
+            movw(3, 2, 0, 1, 4);
+            if (Cap[4])
+            movw(3, 4, 0, 1, 2);
+        }
+
+        if (WQ[head][4]) {
+            if (Cap[0])
+            movw(4, 0, 1, 2, 3);
+            if (Cap[1])
+            movw(4, 1, 0, 2, 3);
+            if (Cap[2])
+            movw(4, 2, 0, 1, 3);
+            if (Cap[3])
+            movw(4, 3, 0, 1, 2);
+        }
+
+        if (++head == MAX_STEP) {
+            head = 0;
+        }
+    }
+    printf("-1");
+}
+catch (int step)
+{
+    printf("%d\n", step);
+}
+</code></pre>
+<p>}</p>
+
+            </div>
+        </article>
+        <div id="ga-tags">
+    
+</div>
+    </section>
+
+    
+<section id="ga-content_pager">
+
+    <div class="next">
+        <a class="ga-highlight" href="/archives/sublime解决中文渲染的问题.md/">sublime解决中文渲染的问题.md</a>
+        <p class="yue">配置文件里加入</p>
+    </div>
+
+
+    <div class="prev">
+        <a class="ga-highlight" href="/archives/算法3/">算法3</a>
+        <p class="yue">BFS走迷宫</p>
+    </div>
+
+</section>
+
+
+    
+
+</main>
+
+                <footer class="ga-mono" id="ga-footer">
+                    <section>
+                        <span id="ga-uptime"></span>
+                        <span class="brand">Plams的个人博客</span>
+                    </section>
+                    <section>
+                        <p class="copyright">
+                            <span>Copyright © 2021 Plams</span>
+                            <span>Powered by <a no-style href="https://github.com/AlanDecode/Maverick" target="_blank">Maverick & Galileo</a></span>
+                        </p>
+                        <div class="copyright">
+                            <span class="footer-addon">
+                                
+                            </span>
+                            <nav class="social-links">
+                                <ul><li><a class="no-style" title="GitHub" href="https://github.com/lishiyuwhu" target="_blank"><i class="gi gi-github"></i>GitHub</a></li></ul>
+                            </nav>
+                        </div>
+                    </section>
+                    <script>
+                        var site_build_date = "2018-3-28T16:16+08:00"
+                    </script>
+                    <script src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/galileo-dc4baa7cf4.js"></script>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!--katex-->
+    <script defer src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/katex.min.js"></script>
+    <script>
+    mathOpts = {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+        ]
+    };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/auto-render.min.js" onload="renderMathInElement(document.body, mathOpts);"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/ExSearch/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/ExSearch/ExSearch-493cb9cd89.js"></script>
+
+    
+    </body>
+</html>

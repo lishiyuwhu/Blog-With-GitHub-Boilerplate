@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Plams,blog" />
+    <meta name="generator" content="Maverick 1.1" />
+    <meta name="template" content="Galileo" />
+    <link rel="alternate" type="application/rss+xml" title="Plams的个人博客 &raquo; RSS 2.0" href="/feed/index.xml" />
+    <link rel="alternate" type="application/atom+xml" title="Plams的个人博客 &raquo; ATOM 1.0" href="/feed/atom/index.xml" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/galileo-3f4dcc35c9.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/ExSearch/ExSearch-182e5a8868.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/katex.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700&display=swap">
+    <script>
+        var ExSearchConfig = {
+            root: "",
+            api: "https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/35ec923c9af3f9bfe45a2a09defd89ab.json"
+        }
+    </script>
+    
+<title>DLBook NOTES 7深度学习中的正则化 - Plams的个人博客</title>
+<meta name="author" content="" />
+<meta name="description" content="参数范数惩罚" />
+<meta property="og:title" content="DLBook NOTES 7深度学习中的正则化 - Plams的个人博客" />
+<meta property="og:description" content="参数范数惩罚" />
+<meta property="og:site_name" content="Plams的个人博客" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/archives/DLBook NOTES 7深度学习中的正则化/" />
+<meta property="og:image" content="" />
+<meta property="article:published_time" content="2017-07-26T09:50:40-00.00" />
+<meta name="twitter:title" content="DLBook NOTES 7深度学习中的正则化 - Plams的个人博客" />
+<meta name="twitter:description" content="参数范数惩罚" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:image" content="" />
+
+
+    
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+
+    </head>
+    
+    <body>
+        
+        <div class="container">
+            <header id="ga-header">
+                <div first>
+                    <aside id="ga-brand">
+                        <h1 class="brand"><a class="no-style" href="/">Plams的个人博客</a></h1>
+                        <p>Destination Determination Deliberation</p>
+                    </aside>
+                </div>
+                <div second id="ga-nav">
+                    <nav class="navs">
+                        <ul><li><a class="ga-highlight" href="/" target="_self">首页</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/archives/" target="_self">归档</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/about/" target="_self">关于</a></li><span class="separator">·</span><li><a href="#" target="_self" class="search-form-input ga-highlight">搜索</a></li></ul>
+                    </nav>
+                </div>
+            </header>
+            <div class="wrapper">
+                
+<main>    
+    <section class="ga-section ga-content">
+        <article class="yue">
+            <h1 class="ga-post_title">DLBook NOTES 7深度学习中的正则化</h1>
+            <span class="ga-post_meta ga-mono">
+                <span></span>
+                <time>
+                    2017-07-26
+                </time>
+                
+                in <a no-style class="category" href="/category/Default/">
+                    Default
+                </a>
+                
+                
+            </span>
+            <div class="ga-content_body">
+                <h2>参数范数惩罚</h2>
+<p>$L_2$范数对于二次代价函数的影响: 只有在显著减小目标函数方向上的参数会保留得相对完好。在无助于目标函数减小的方向（对应 Hessian 矩阵较小的特征值）上改变参数不会显著增加梯度。这种不重要方向对应的分量会在训练过程中因正则化而衰减掉。</p>
+<p>$L_2$正则化能让学习算法 ‘‘感知’’ 到具有较高方差的输入 $x$，因此与输出目标的协方差较小（相对增加方差）的特征的权重将会收缩.</p>
+<p>相比$L_2$正则化，$L_1$正则化会产生更稀疏（sparse）的解。此处稀疏性指的是
+最优值中的一些参数为 $0$。和$L_2$正则化相比，$L_1$正则化的稀疏性具有本质的不同. $L_2$正则化不会使参数变得稀疏，而$L_1$ 正则化有可能通过足够大的 α 实现稀疏。</p>
+<p>由 $L_1$ 正则化导出的稀疏性质已经被广泛地用于特征选择（feature selection）机
+制。</p>
+<!-- more -->
+
+<h2>作为约束的范数惩罚</h2>
+<p>惩罚可能会导致目标函数非凸而使算法陷入局部极小 (对应于小的 θ）。</p>
+<p>约束神经网络层的权重矩阵每列的范数，而不是限制整个权重矩阵的 Frobenius 范数。分别限制每一列的范数可以防止某一隐藏单元有非常大的权重。</p>
+<h2>噪声鲁棒性</h2>
+<p>另一种正则化模型的噪声使用方式是将其加到的权重。这项技术主要用于循环
+神经网络 (Jim et al., 1996; Graves, 2011)。这可以被解释为关于权重的贝叶斯推断的
+随机实现。贝叶斯学习过程将权重视为不确定的，并且可以通过概率分布表示这种
+不确定性。向权重添加噪声是反映这种不确定性的一种实用的随机方法。
+在某些假设下，施加于权重的噪声可以被解释为与更传统的正则化形式等同，
+鼓励要学习的函数保持稳定。</p>
+<h2>early stopping</h2>
+<p>在每次验证集误差有所改善后，我们存储模型参数的副本。当训练算法终止时，我们返回这些参数而不是最新的参数。当验证
+集上的误差在事先指定的循环次数内没有进一步改善时，算法就会终止。
+这可能是深度学习中最常用的正
+则化形式。它的流行主要是因为有效性和简单性。</p>
+<p>提前终止需要验证集，这意味着某些训练数据不能被馈送到模型。为了更好地
+利用这一额外的数据，我们可以在完成提前终止的首次训练之后，进行额外的训练。
+在第二轮额外的训练步骤中，所有的训练数据都被包括在内。有两个基本的策略都
+可以用于第二轮训练过程:</p>
+<ol>
+<li>一个策略（算法7.2）是再次初始化模型，然后使用所有数据再次训练。在这个
+第二轮训练过程中，我们使用第一轮提前终止训练确定的最佳步数。</li>
+<li>保持从第一轮训练获得的参数，然后使用全部的数据继续训练。
+在这个阶段，已经没有验证集指导我们需要在训练多少步后终止。相反，我们可以监
+控验证集的平均损失函数，并继续训练，直到它低于提前终止过程终止时的目标值。
+此策略避免了重新训练模型的高成本，但表现并没有那么好。</li>
+</ol>
+<h2>Bagging 和其他集成方法</h2>
+<p>分别训练几个不同的模型，然后让所有模型表决测
+试样例的输出。这是机器学习中常规策略的一个例子，被称为模型平均（model
+averaging）。采用这种策略的技术被称为集成方法。</p>
+<p>模型平均（model averaging）奏效的原因是不同的模型通常不会在测试集上产
+生完全相同的误差。</p>
+
+            </div>
+        </article>
+        <div id="ga-tags">
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/tag/NOTES/">#NOTES</a>
+    </span>
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/tag/DLBOOK/">#DLBOOK</a>
+    </span>
+    
+</div>
+    </section>
+
+    
+<section id="ga-content_pager">
+
+    <div class="next">
+        <a class="ga-highlight" href="/archives/为tensorflow模块在spyder添加代码补全/">为tensorflow模块在spyder添加代码补全</a>
+        <p class="yue">spyder自带的代码补全不支持tf模块.</p>
+    </div>
+
+
+    <div class="prev">
+        <a class="ga-highlight" href="/archives/统计学习方法NOTES/">统计学习方法NOTES</a>
+        <p class="yue">Model | Strategy | Algorithm</p>
+    </div>
+
+</section>
+
+
+    
+
+</main>
+
+                <footer class="ga-mono" id="ga-footer">
+                    <section>
+                        <span id="ga-uptime"></span>
+                        <span class="brand">Plams的个人博客</span>
+                    </section>
+                    <section>
+                        <p class="copyright">
+                            <span>Copyright © 2021 Plams</span>
+                            <span>Powered by <a no-style href="https://github.com/AlanDecode/Maverick" target="_blank">Maverick & Galileo</a></span>
+                        </p>
+                        <div class="copyright">
+                            <span class="footer-addon">
+                                
+                            </span>
+                            <nav class="social-links">
+                                <ul><li><a class="no-style" title="GitHub" href="https://github.com/lishiyuwhu" target="_blank"><i class="gi gi-github"></i>GitHub</a></li></ul>
+                            </nav>
+                        </div>
+                    </section>
+                    <script>
+                        var site_build_date = "2018-3-28T16:16+08:00"
+                    </script>
+                    <script src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/galileo-dc4baa7cf4.js"></script>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!--katex-->
+    <script defer src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/katex.min.js"></script>
+    <script>
+    mathOpts = {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+        ]
+    };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/auto-render.min.js" onload="renderMathInElement(document.body, mathOpts);"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/ExSearch/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/ExSearch/ExSearch-493cb9cd89.js"></script>
+
+    
+    </body>
+</html>

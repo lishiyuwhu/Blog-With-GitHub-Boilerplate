@@ -1,88 +1,288 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN"><id>/</id><title>Plams的个人博客</title><updated>2021-02-04T08:08:55.080567+08:06</updated><author><name>Plams</name><email>lishiyu.whu@gmail.com</email></author><link href="/" rel="alternate"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><logo>/logo.jpeg</logo><subtitle>Destination Determination Deliberation</subtitle><entry><id>/archives/Deep steganalysis/</id><title>Deep steganalysis</title><updated>2021-02-04T08:08:55.080677+00:00</updated><content>&lt;h2&gt;Deep residual learning for image steganalysis&lt;/h2&gt;
-&lt;p&gt;&lt;a href="http://futuremedia.szu.edu.cn/assets/files/Deep%20residual%20learning%20for%20image%20steganalysis.pdf"&gt;http://futuremedia.szu.edu.cn/assets/files/Deep%20residual%20learning%20for%20image%20steganalysis.pdf&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;figure  size-undefined&gt;&lt;img width="-1" height="-1" src="http://otivusbsc.bkt.clouddn.com/11f6de4a-3fea-4fde-a8b4-92bb3fd79b8f" /&gt;&lt;figcaption&gt;图片描述&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;一个KV核, 处理图像, 后面接上resnet&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN"><id>/</id><title>Plams的个人博客</title><updated>2021-02-04T08:48:55.916134+08:06</updated><author><name>Plams</name><email>lishiyu.whu@gmail.com</email></author><link href="/" rel="alternate"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><logo>https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/logo.jpeg</logo><subtitle>Destination Determination Deliberation</subtitle><entry><id>/archives/解决tmux与使用cmder ssh后的冲突问题/</id><title>解决tmux与使用cmder ssh后的冲突问题</title><updated>2021-02-04T08:48:55.916698+00:00</updated><content>&lt;p&gt;这个问题其实挺久了, cmder中ssh到别的机器之后开启tmux, 会有一大堆的排版错误.&lt;/p&gt;
+&lt;p&gt;解决办法:&lt;/p&gt;
+&lt;p&gt;(要先开启WSL)&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;bash&lt;/code&gt; 后再去ssh, 通过WSL去ssh字节缓冲就是正常的了.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;啥时候powershell也能有个类似tmux的东西. 现在先ssh到个linux上, 开tmux, 再一个个窗口ssh到windows机器, 简直多此一举&lt;/p&gt;
+</content><link href="/archives/解决tmux与使用cmder ssh后的冲突问题/" rel="alternate"/><published>2018-12-20T13:48:00+08:06</published></entry><entry><id>/archives/ssh到win的powershell 的一堆坑/</id><title>ssh到win的powershell 的一堆坑</title><updated>2021-02-04T08:48:55.916669+00:00</updated><content>&lt;p&gt;记录一些坑&lt;/p&gt;
+&lt;p&gt;server是一台win10的gpu机器, 要ssh过去做东西而不影响机主.
+client也是win10&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;powershell 没法使用conda的activate&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;!-- more --&gt;
+&lt;a href="https://stackoverflow.com/questions/47800794/how-to-activate-different-anaconda-environment-from-powershell"&gt;https://stackoverflow.com/questions/47800794/how-to-activate-different-anaconda-environment-from-powershell&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;conda install -n root -c pscondaenvs pscondaenvs&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;然而并没卵用&lt;/p&gt;
+&lt;p&gt;conda 号称4.6版本修正了这个问题, 使用&lt;code&gt;conda install -c conda-canary conda&lt;/code&gt;安装测试版
+然并卵&lt;/p&gt;
+&lt;p&gt;解决:&lt;/p&gt;
+&lt;p&gt;先在cmd里面 &lt;code&gt;activate&lt;/code&gt;之后再进powershell&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;curses 错误&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;老问题了, win不支持自带的curses.
+手工装whl
+&lt;code&gt;https://www.lfd.uci.edu/~gohlke/pythonlibs/#curses&lt;/code&gt;&lt;/p&gt;
+</content><link href="/archives/ssh到win的powershell 的一堆坑/" rel="alternate"/><published>2018-12-20T14:09:00+08:06</published></entry><entry><id>/archives/魔女 BLOG 初中級日麻講座 笔记/</id><title>魔女 BLOG 初中級日麻講座 笔记</title><updated>2021-02-04T08:48:55.916639+00:00</updated><content>&lt;p&gt;针对自己打牌的一些不良习惯的记录&lt;/p&gt;
 &lt;!-- more --&gt;
 
-&lt;p&gt;&lt;figure style="flex: 68.89763779527559" &gt;&lt;img width="175" height="127" src="/archives/assets/8881baf63968c768c719d6c55bc7f996.png" /&gt;&lt;figcaption&gt;image-20210204160753641&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
-</content><link href="/archives/Deep steganalysis/" rel="alternate"/><published>2017-12-25T15:21:00+08:06</published></entry><entry><id>/archives/typography/</id><title>Hello World!</title><updated>2021-02-04T08:08:55.080621+00:00</updated><author><name>AlanDecode</name><email>lishiyu.whu@gmail.com</email><uri>https://www.Plams.me</uri></author><content>&lt;div class="notice"&gt;这是一篇示例文章，在这里你可以看到常用页面元素的显示效果，同时也是 Markdown 语法的参考文章。保留或者删除本文，开始自己的创作吧！&lt;/div&gt;&lt;h2&gt;L2 Heading&lt;/h2&gt;
-&lt;h3&gt;L3 Heading&lt;/h3&gt;
-&lt;h4&gt;L4 Heading&lt;/h4&gt;
-&lt;h5&gt;L5 Heading&lt;/h5&gt;
-&lt;h6&gt;L6 Heading&lt;/h6&gt;
-&lt;h2&gt;Paragraph&lt;/h2&gt;
-&lt;p&gt;We are creating a world that all may enter without privilege or prejudice accorded by race, economic power, military force, or station of birth.&lt;/p&gt;
-&lt;p&gt;We are creating a world where anyone, anywhere may express his or her beliefs, no matter how singular, without fear of being coerced into silence or conformity.&lt;/p&gt;
-&lt;h2&gt;Inline elements&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Bold&lt;/strong&gt;, &lt;ruby&gt;Ruby&lt;rp&gt;(&lt;/rp&gt;&lt;rt&gt;ルビ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;, &lt;em&gt;Italic&lt;/em&gt;, &lt;del&gt;Strikethrough&lt;/del&gt;, &lt;a href="https://www.imalan.cn"&gt;Link&lt;/a&gt;&lt;sup id="fn_ref_1"&gt;&lt;a href="#fn_1"&gt;1&lt;/a&gt;&lt;/sup&gt;。&lt;/p&gt;
-&lt;h2&gt;Blockquote and nested blockquote&lt;/h2&gt;
-&lt;blockquote&gt;&lt;p&gt;安得广厦千万间，大庇天下寒士俱欢颜！风雨不动安如山。&lt;/p&gt;
-&lt;blockquote&gt;&lt;p&gt;呜呼！何时眼前突兀见此屋，吾庐独破受冻死亦足！&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;h2&gt;Code&lt;/h2&gt;
-&lt;p&gt;Inline code: &lt;code&gt;int a=1;&lt;/code&gt;. Code block:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
-    &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Hello World!&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;List&lt;/h2&gt;
-&lt;h3&gt;Unordered List&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;iPhone&lt;ul&gt;
-&lt;li&gt;iPhone X&lt;/li&gt;
-&lt;li&gt;iPhone 11&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;iPad&lt;/li&gt;
-&lt;li&gt;MacBook&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Ordered List&lt;/h3&gt;
 &lt;ol&gt;
-&lt;li&gt;打开冰箱&lt;ol&gt;
-&lt;li&gt;右手放在冰箱门拉手上&lt;/li&gt;
-&lt;li&gt;左手扶住冰箱主体&lt;/li&gt;
-&lt;li&gt;右手向后用力&lt;/li&gt;
+&lt;li&gt;配牌不佳的情况下,役牌多留一下&lt;/li&gt;
+&lt;li&gt;4445 形的搭子在早巡价值不大&lt;/li&gt;
+&lt;li&gt;有效牌重复的搭子要注意&lt;/li&gt;
+&lt;li&gt;常见复合搭子&lt;/li&gt;
 &lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;把大象放进冰箱&lt;/li&gt;
-&lt;li&gt;关上冰箱&lt;/li&gt;
+&lt;blockquote&gt;&lt;p&gt;兩\三間搭兩\三間搭指的是類似 468, 或 2468 等連續卡窿的牌形.不少初學者都會覺得卡窿是惡形, 不太喜歡此等牌形. 不過我們要留意: 一個246 的兩間搭, 跟一個兩面搭的入章牌數是一樣的, 分別是前者要 3 隻牌, 後者只需兩隻, 前者的效率稍低.雖然它稱不上是好牌形, 不過在序盤搭子仍不夠時, 兩間搭仍然是很有用.&lt;/p&gt;
+&lt;p&gt;3556 形35+56 的兩搭, 表面跟上次談過的 35+67 形差不多, 實際上相去甚遠. 原因是35,56 就犯了有效牌重覆的毛病. 在這情況之下, 35 搭的價格很低, 如果已經夠搭, 35 差不多會是最早被打的一組. 剩下 56, 或 556 就已經夠了.&lt;/p&gt;
+&lt;p&gt;5566 形大家可能以為 5566 是兩面, 又有機會成一盃口. 但在我心目中, 它是一個很差的形態. 5566 是一個完完全全的有放牌重覆, 求兩次 47 表面上很容易, 但當在有其他更好的搭子時, 這個必然會先被處理.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;不宜過早確定雀頭&lt;/li&gt;
+&lt;li&gt;一副牌最多只需要兩個對子, 第三個或以後對子效能是十分低.&lt;/li&gt;
+&lt;li&gt;立直自摸七對裡 2 的跳滿, 是一副如何差的牌都有機會完成的役種. 當你已經無路可走時, 七對子很多時都會變成你的希望.&lt;/li&gt;
+&lt;li&gt;筋牌防守时, 注意不要考虑确定对对的那一家的筋&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2&gt;Horizontal rule&lt;/h2&gt;
-&lt;hr&gt;
-&lt;h2&gt;Math&lt;/h2&gt;
-&lt;p&gt;Inline Math: $m\times n$, math block:&lt;/p&gt;
-&lt;p&gt;$$C_{m\times k}=A_{m\times n}\cdot B_{n\times k}$$&lt;/p&gt;
-&lt;h2&gt;Figures&lt;/h2&gt;
-&lt;h3&gt;Single figure&lt;/h3&gt;
-&lt;p&gt;&lt;figure style="flex: 92.88888888888889" &gt;&lt;img width="836" height="450" src="/archives/assets/e0affbc80ccb2d596c87b520e37e7071.jpg" /&gt;&lt;figcaption&gt;Princess Mononoke&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;h3&gt;Photoset&lt;/h3&gt;
-&lt;div class="photos"&gt;
-&lt;figure style="flex: 75.0" &gt;&lt;img width="4032" height="2688" src="/archives/assets/4956a144888cdbbb6c2df1d1d15384b0.jpeg" /&gt;&lt;/figure&gt;
-&lt;figure style="flex: 50.03720238095238" &gt;&lt;img width="2690" height="2688" src="/archives/assets/4c66f0da616b08325b3aaa4c8b3f68e1.jpg" /&gt;&lt;/figure&gt;
-&lt;figure style="flex: 75.0" &gt;&lt;img width="4032" height="2688" src="/archives/assets/8b4d2334469ffa39b59e6fdb37c8c601.jpeg" /&gt;&lt;/figure&gt;&lt;/div&gt;&lt;div class="photos"&gt;
-&lt;figure style="flex: 75.0" &gt;&lt;img width="4032" height="2688" src="/archives/assets/0f5023d542a33e7c9d270f3cd6a99562.jpeg" /&gt;&lt;/figure&gt;
-&lt;figure style="flex: 75.0" &gt;&lt;img width="4032" height="2688" src="/archives/assets/20ec69d2a0276336f95e11f42866d17f.jpeg" /&gt;&lt;/figure&gt;
-&lt;figure style="flex: 75.0" &gt;&lt;img width="4032" height="2688" src="/archives/assets/2b8af25285e5a193729a350593113bad.jpeg" /&gt;&lt;/figure&gt;&lt;/div&gt;&lt;h2&gt;Table&lt;/h2&gt;
-&lt;table&gt;
-&lt;thead&gt;&lt;tr&gt;
-&lt;th&gt;header&lt;/th&gt;
-&lt;th&gt;header&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;cell 1&lt;/td&gt;
-&lt;td&gt;cell 2&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;cell 3&lt;/td&gt;
-&lt;td&gt;cell 4&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2&gt;Link Card&lt;/h2&gt;
-&lt;div class="links"&gt;
-&lt;a style="display:block" target="_blank" href="https://www.imalan.cn" class="board-item"&gt;                 &lt;div class="board-thumb"&gt;&lt;img src="https://secure.gravatar.com/avatar/1741a6eef5c824899e347e4afcbaa75d?s=200&amp;r=G&amp;d="&gt;&lt;/div&gt;                 &lt;div class="board-title"&gt;AlanDecode&lt;/div&gt;&lt;/a&gt;&lt;/div&gt;&lt;hr&gt;&lt;div class="footnotes"&gt;&lt;ol&gt;&lt;li id="fn_1"&gt;Home page for AlanDecode &lt;a no-style href="#fn_ref_1"&gt;↩&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</content><link href="/archives/typography/" rel="alternate"/><published>2019-12-18T16:50:00+08:06</published></entry></feed>
+</content><link href="/archives/魔女 BLOG 初中級日麻講座 笔记/" rel="alternate"/><published>2019-02-28T14:35:00+08:06</published></entry><entry><id>/archives/.sh无法执行No such file or directory/</id><title>.sh无法执行No such file or directory</title><updated>2021-02-04T08:48:55.916421+00:00</updated><content>&lt;p&gt;执行.sh报错No such file or directory&lt;/p&gt;
+&lt;!-- more --&gt;
+
+&lt;p&gt;首先给权限 &lt;code&gt;chmod u+x filename&lt;/code&gt;
+然后vim里面看&lt;code&gt;:set ff&lt;/code&gt;  , 返回的fileformat是不是unix
+不是的话&lt;code&gt;:set ff=unix&lt;/code&gt;设置为unix就能够执行了&lt;/p&gt;
+</content><link href="/archives/.sh无法执行No such file or directory/" rel="alternate"/><published>2019-08-20T20:50:42+08:06</published></entry><entry><id>/archives/简单实用的python CLICK/</id><title>简单实用的python CLICK</title><updated>2021-02-04T08:48:55.916391+00:00</updated><content>&lt;p&gt;click是一个将python脚本转为命令行使用的包.
+类似于 Argparse  tf.FLAGS&lt;/p&gt;
+&lt;p&gt;使用非常简单, import之后, 使用&lt;code&gt;@click.command()&lt;/code&gt;以装饰器的形式附在想要使用的函数上
+然后使用&lt;code&gt;@click.option()&lt;/code&gt;添加配置信息, 最常用的就是&lt;code&gt;@click.option('--count', default=1, help='Number of greetings.')&lt;/code&gt;这种形式&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;click&lt;/span&gt;
+
+&lt;span class="nd"&gt;@click&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="nd"&gt;@click&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;option&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;--count&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Number of greetings.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nd"&gt;@click&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;option&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;--name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;prompt&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Your name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+              &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;The person to greet.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;hello&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Simple program that greets NAME for a total of COUNT times.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;click&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;echo&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Hello &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s1"&gt;!&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;hello&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+</content><link href="/archives/简单实用的python CLICK/" rel="alternate"/><published>2019-08-29T21:37:00+08:06</published></entry><entry><id>/archives/HQL 报错 Hive Runtime Error while closing operators/</id><title>HQL 报错 Hive Runtime Error while closing operators</title><updated>2021-02-04T08:48:55.916362+00:00</updated><content>&lt;p&gt;多个  select * from table group by key 相互join时, 会报&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[2019-09-04 21:36:48] Caused by: java.lang.RuntimeException: Hive Runtime Error while closing operators: org.apache.hadoop.hive.ql.metadata.HiveException: org.apache.hadoop.hive.ql.metadata.HiveException: java.lang.RuntimeException: org.apache.hadoop.hive.ql.metadata.HiveException: Hive Runtime Error while processing row (tag=1) {"key":{"_col0":"珠宝黄金","_col1":{0:{"_col0":"URL"}}},"value":null}
+[2019-09-04 21:36:48]   at org.apache.hadoop.hive.ql.exec.tez.ReduceRecordProcessor.close(ReduceRecordProcessor.java:328)
+[2019-09-04 21:36:48]   at org.apache.hadoop.hive.ql.exec.tez.TezProcessor.initializeAndRunProcessor(TezProcessor.java:164)
+[2019-09-04 21:36:48]   ... 14 more
+[2019-09-04 21:36:48] Caused by: org.apache.hadoop.hive.ql.metadata.HiveException: org.apache.hadoop.hive.ql.metadata.HiveException: org.apache.hadoop.hive.ql.metadata.HiveException: java.lang.RuntimeException: org.apache.hadoop.hive.ql.metadata.HiveException: Hive Runtime Error while processing row (tag=1) {"key":{"_col0":"珠宝黄金","_col1":{0:{"_col0":"URL"}}},"value":null}
+[2019-09-04 21:36:48]   at org.apache.hadoop.hive.ql.exec.GroupByOperator.closeOp(GroupByOperator.java:1102)
+[2019-09-04 21:36:48]   at org.apache.hadoop.hive.ql.exec.Operator.close(Operator.java:622)
+[2019-09-04 21:36:48]   at org.apache.hadoop.hive.ql.exec.tez.ReduceRecordProcessor.close(ReduceRecordProcessor.java:304)
+[2019-09-04 21:36:48]   ... 15 more&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;类似的错误&lt;/p&gt;
+&lt;p&gt;解决方法不用tez换用mr, 加上&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;set&lt;/span&gt; &lt;span class="n"&gt;hive&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;execution&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;engine&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;mr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+</content><link href="/archives/HQL 报错 Hive Runtime Error while closing operators/" rel="alternate"/><published>2019-09-04T21:39:00+08:06</published></entry><entry><id>/archives/编译tf_serving/</id><title>编译tf_serving</title><updated>2021-02-04T08:48:55.916332+00:00</updated><content>&lt;p&gt;【踩坑实录】TensorFlow Serving 安装总结
+&lt;a href="https://zhuanlan.zhihu.com/p/55108743"&gt;https://zhuanlan.zhihu.com/p/55108743&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;TENSORFLOW-SERVING-GPU 本地编译并使用
+&lt;a href="https://www.cnblogs.com/YouXiangLiThon/p/8295499.html"&gt;https://www.cnblogs.com/YouXiangLiThon/p/8295499.html&lt;/a&gt;
+&lt;!-- more --&gt;&lt;/p&gt;
+&lt;h1&gt;安装依赖&lt;/h1&gt;
+&lt;p&gt;```shell script
+   40  java -version
+   41  pip install -i &lt;a href="https://pypi.tuna.tsinghua.edu.cn/simple"&gt;https://pypi.tuna.tsinghua.edu.cn/simple&lt;/a&gt; pip -U
+   42  pip config set global.index-url &lt;a href="https://pypi.tuna.tsinghua.edu.cn/simple"&gt;https://pypi.tuna.tsinghua.edu.cn/simple&lt;/a&gt;
+   43  man epel
+   44  yum -y install freetype-devel libpng12-devel zip zlib-devel giflib-devel zeromq3-devel
+   45  gcc -version
+   46  gcc --version
+   47  pip install numpy
+   48  sudo yum -y install freetype-devel libpng12-devel zip zlib-devel giflib-devel zeromq3-devel
+   49  pip install grpcio_tools mock grpcio
+   50  pip install keras_applications,keras_preprocessing,h5py
+   51  pip install keras_applications
+   52  pip install keras_preprocessing
+   53  pip install h5py
+   54  sudo yum -y install libev libev-devel zlib zlib-devel openssl openssl-devel
+   55  ls
+   56  wget &lt;a href="https://github.com/bazelbuild/bazel/releases/download/0.19.2/bazel-0.19.2-installer-linux-x86_64.sh"&gt;https://github.com/bazelbuild/bazel/releases/download/0.19.2/bazel-0.19.2-installer-linux-x86_64.sh&lt;/a&gt;
+   57  rz
+   58  ls
+   59  chmod +x bazel-0.19.2-installer-linux-x86_64.sh
+   60  ./bazel-0.19.2-installer-linux-x86_64.sh&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+&amp;gt;这里选择bazel0.19.2版本，在GitHub issue上提出，0.19.2和0.18.x版本对import StringIO这个python2特有的包做的处理比较好，不会出现“ImportError: No module named 'StringIO'”这样的错误。
+
+然后git clone tf 1.11
+
+```shell script
+git clone -b r1.11 --recurse-submodules https://github.com/tensorflow/serving
+
+cd serving
+mv tools/bazel.rc ./.bazelrc&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后开始编译&lt;/p&gt;
+&lt;p&gt;注意python路径, 全部手工指定
+```shell script
+bazel build -c opt --verbose_failures --action_env PYTHON_BIN_PATH=/data0/shanqi/anaconda3/bin/python --action_env PYTHON_LIB_PATH=/data0/shanqi/anaconda3/lib/python3.7/site-packages --define PYTHON_BIN_PATH=/data0/shanqi/anaconda3/bin/python --define PYTHON_LIB_PATH=/data0/shanqi/anaconda3/lib/python3.7/site-packages  --python_path=/data0/shanqi/anaconda3/bin/python --force_python=py3 --host_force_python=py3 --define with_jemalloc=true --define with_gcp_support=true tensorflow_serving/...&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+
+报错
+```shell script
+ERROR: /data0/shanqi/.cache/bazel/_bazel_shanqi/68bcdaae61708a14b8d3d517b634806f/external/org_tensorflow/tensorflow/python/BUILD:3768:1: Linking of rule '@org_tensorflow//tensorflow/python:_pywrap_tensorflow_internal.so' failed (Exit 1): gcc failed: error executing command
+  (cd /data0/shanqi/.cache/bazel/_bazel_shanqi/68bcdaae61708a14b8d3d517b634806f/execroot/tf_serving &amp;amp;&amp;amp; \
+  exec env - \
+    PATH=/usr/local/lib/bazel/bin:/usr/local/bin:/data0/shanqi/anaconda3/bin:/data0/shanqi/anaconda3/condabin:/usr/local/sbin:/sbin:/bin:/usr/sbin:/usr/bin:/opt/puppetlabs/bin:/root/bin \
+    PWD=/proc/self/cwd \
+  /bin/gcc -shared -o bazel-out/host/bin/external/org_tensorflow/tensorflow/python/_pywrap_tensorflow_internal.so -Wl,--version-script bazel-out/host/bin/external/org_tensorflow/tensorflow/python/pywrap_tensorflow_internal_versionscript.lds '-Wl,-rpath,$ORIGIN/,-rpath,$ORIGIN/..' -Wl,-soname,_pywrap_tensorflow_internal.so -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread -pthread '-fuse-ld=gold' -Wl,-no-as-needed -Wl,-z,relro,-z,now -B/bin -B/usr/bin -pass-exit-codes -Wl,--gc-sections -Wl,-S -Wl,@bazel-out/host/bin/external/org_tensorflow/tensorflow/python/_pywrap_tensorflow_internal.so-2.params)
+/bin/ld.gold: error: bazel-out/host/bin/external/org_tensorflow/tensorflow/core/kernels/_objs/dynamic_stitch_op/dynamic_stitch_op.pic.o: file is empty
+/bin/ld.gold: error: bazel-out/host/bin/external/boringssl/_objs/crypto/cpu-arm.pic.o: file is empty
+/bin/ld.gold: error: bazel-out/host/bin/external/jpeg/_objs/jpeg/jdapistd.pic.o: file is empty
+collect2: error: ld returned 1 exit status
+INFO: Elapsed time: 19682.787s, Critical Path: 2014.75s, Remote (0.00% of the time): [queue: 0.00%, setup: 0.00%, process: 0.00%]
+INFO: 7791 processes: 7791 local.
+FAILED: Build did NOT complete successfully&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;第一次编译时加了local_resources,  编译了6个小时然后最后报错了. 查询知道可能是资源不足,去掉
+&lt;code&gt;--local_resources&lt;/code&gt; 
+相关选项.同时安装了一下tensoflow(1.14)&lt;/p&gt;
+&lt;p&gt;之后重新开始编译, 第二次就很快了&lt;/p&gt;
+&lt;p&gt;```shell script
+INFO: Elapsed time: 117.158s, Critical Path: 45.59s, Remote (0.00% of the time): [queue: 0.00%, setup: 0.00%, process: 0.00%]
+INFO: 2595 processes: 2595 local.
+INFO: Build completed successfully, 3224 total actions&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+
+就得到了```bazel-bin/tensorflow_serving/model_servers/tensorflow_model_server&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;验证得到的tensorflow_model_server&lt;/h1&gt;
+&lt;p&gt;生成自带的测试mnist模型
+```shell script
+python tensorflow_serving/example/mnist_saved_model.py models/mnist&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+开服务
+```shell script
+bazel-bin/tensorflow_serving/model_servers/tensorflow_model_server --port=8042 --model_name=mnist --model_base_path=/data0/shanqi/workspace/tfserving/serving/models/mnist&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;client端要先装tfserving
+```shell script
+pip install tensorflow-serving-api
+python tensorflow_serving/example/mnist_client.py --num_tests=1000 --server=127.0.0.1:8042&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+运行之后, 说明编译成功&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;&lt;p&gt;Inference error rate: 10.4%
+```&lt;/p&gt;
+&lt;/blockquote&gt;
+</content><link href="/archives/编译tf_serving/" rel="alternate"/><published>2019-09-22T15:48:00+08:06</published></entry><entry><id>/archives/解决_csv.Error line contains NULL byte/</id><title>解决_csv.Error line contains NULL byte</title><updated>2021-02-04T08:48:55.916301+00:00</updated><content>&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;fi&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;dev.tsv&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;rb&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fi&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;fi&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;fo&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;dev&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;wb&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;fo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;b&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\x00&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sa"&gt;b&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;fo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- more --&gt;</content><link href="/archives/解决_csv.Error line contains NULL byte/" rel="alternate"/><published>2019-09-28T21:01:00+08:06</published></entry><entry><id>/archives/pytorch的dataloader输出大小不一样的batch/</id><title>pytorch的dataloader输出大小不一样的batch</title><updated>2021-02-04T08:48:55.916265+00:00</updated><content>&lt;h1&gt;pytorch的dataloader输出大小不一样的batch&lt;/h1&gt;
+&lt;h2&gt;问题出现&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MYDATASET&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Dataset&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;soft_data_dir&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;transforms_&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+                &lt;span class="o"&gt;***************************&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__getitem__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+                &lt;span class="o"&gt;**********************&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;A_256&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;item_A&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;B_256&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;item_B&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;A_512&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;item_A_512&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;B_512&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;item_B_512&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__len__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;files_A&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;期望返回的dict中, 256代表256*256大小的图片, dict中含有两种大小的输出, 在使用时&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;batch&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dataloader&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+  &lt;span class="c1"&gt;# Set model input&lt;/span&gt;
+  &lt;span class="n"&gt;real_A_256&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Variable&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;input_source_256&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;copy_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;batch&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;A_256&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt;
+  &lt;span class="n"&gt;real_B_512&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Variable&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;input_target_512&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;copy_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;batch&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;B_512&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;若batchsize=1或者num_workers&amp;gt;1的情况下会报错&lt;code&gt;RuntimeError: invalid argument 0: Sizes of tensors must match except in dimension 0.&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;这是因为dataloader在把dataset的&lt;code&gt;__getitem__&lt;/code&gt;输出拼合成batch的时候无法处理dict这种数据&lt;/p&gt;
+&lt;h2&gt;解决方法 -&amp;gt;  collate_fn&lt;/h2&gt;
+&lt;p&gt;DataLoader可以配置collate_fn参数, 用于拼合各个样本. 报错也正是默认的&lt;code&gt;default_collate&lt;/code&gt;函数中&lt;code&gt;torch.stack(batch, 0, out=out)&lt;/code&gt;部分出错&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;torch.utils.data&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;DataLoader&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;torch&lt;/span&gt;
+
+&lt;span class="n"&gt;transforms_&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;transforms&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ToTensor&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
+               &lt;span class="n"&gt;transforms&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Normalize&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;))]&lt;/span&gt;  &lt;span class="c1"&gt;# (0,1) -&amp;gt; (-1,1)&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;TmpSET&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Dataset&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;transforms_&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;img&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Image&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;./dlrb.jpeg&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;transform&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;transforms&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Compose&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;transforms_&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__getitem__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+      &lt;span class="n"&gt;img_A&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;img&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;resize&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="mi"&gt;512&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;Image&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;BILINEAR&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="n"&gt;img_B&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;img&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;resize&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="mi"&gt;256&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;256&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;Image&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;BILINEAR&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="n"&gt;item_A&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;transform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;img_A&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="n"&gt;item_B&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;transform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;img_B&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;item_A&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;item_A&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;item_B&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;item_B&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="c1"&gt;# return {&amp;#39;A_256&amp;#39;: item_A, &amp;#39;B_256&amp;#39;: item_B, &amp;#39;A_512&amp;#39;: item_A, &amp;#39;B_512&amp;#39;: item_B}&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__len__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+      &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;my_collate_fn&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;batch&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+      &lt;span class="n"&gt;A_256&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;B_256&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;A_512&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;B_512&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;zip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;batch&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;A_256&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;B_256&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;A_512&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;B_512&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+
+
+    &lt;span class="n"&gt;dataloader&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;DataLoader&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TmpSET&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;transforms_&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;transforms_&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+                            &lt;span class="n"&gt;batch_size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;shuffle&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;drop_last&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;num_workers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;collate_fn&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;my_collate_fn&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;batch&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dataloader&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+      &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;batch&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="c1"&gt;# print(batch[1].shape)&lt;/span&gt;
+      &lt;span class="c1"&gt;# print(batch[2].shape)&lt;/span&gt;
+      &lt;span class="c1"&gt;# print(batch[3].shape)&lt;/span&gt;
+      &lt;span class="k"&gt;break&lt;/span&gt;
+
+&lt;span class="c1"&gt;########################################################################&lt;/span&gt;
+&lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Size&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Size&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Size&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;256&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;256&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Size&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;256&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;256&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="c1"&gt;########################################################################&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这样, 简单的在my_collate_fn中把list拆开手动使用torch.stack合并各项, 就可以正确得到各个nchw的batch数据了&lt;/p&gt;
+</content><link href="/archives/pytorch的dataloader输出大小不一样的batch/" rel="alternate"/><published>2020-10-14T21:31:00+08:06</published></entry><entry><id>/archives/torch.upsample转ONNX的问题/</id><title>torch.upsample转ONNX的问题</title><updated>2021-02-04T08:48:55.916199+00:00</updated><content>&lt;h1&gt;问题&lt;/h1&gt;
+&lt;p&gt;转换nn.Upsample到onnx再到TNN的时候总会出些问题&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;This operator might cause results to not match the expected results by PyTorch.
+ONNX's Upsample/Resize operator did not match Pytorch's Interpolation until opset 11. Attributes to determine how to transform the input were added in onnx:Resize in opset 11 to support Pytorch's behavior (like coordinate_transformation_mode and nearest_mode).
+We recommend using opset 11 and above for models using this operator.&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;核心原因是版本需要对应,&lt;/p&gt;
+&lt;p&gt;使用torch1.4+最新onnx, &lt;code&gt;opset_version=11&lt;/code&gt;可以支持使用最邻近插值.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Upsampling&lt;/span&gt;
+&lt;span class="c1"&gt;# 使用最邻近上采样+卷积实现&lt;/span&gt;
+&lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+  &lt;span class="n"&gt;nn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Upsample&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;scale_factor&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;nearest&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+  &lt;span class="n"&gt;nn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Conv2d&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dim_lst&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;n_residual_blocks&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;dim_lst&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;n_residual_blocks&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="n"&gt;padding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bias&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+  &lt;span class="n"&gt;nn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;InstanceNorm2d&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dim_lst&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;n_residual_blocks&lt;/span&gt;&lt;span class="p"&gt;]),&lt;/span&gt;
+  &lt;span class="n"&gt;nn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ReLU&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;inplace&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;即可直接转换, 不用直接显式使用&lt;code&gt;F.interpolate&lt;/code&gt;, 不需要指明size, 使用scale_factor即可&lt;/p&gt;
+&lt;h2&gt;转换脚本&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;brew install libomp&lt;/code&gt; 注意Mac上的openmp可能出问题, 要多加一行&lt;code&gt;os.environ['KMP_DUPLICATE_LIB_OK']='True'&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
+&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;KMP_DUPLICATE_LIB_OK&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;True&amp;#39;&lt;/span&gt;
+
+&lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;onnx&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;export&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;module&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                  &lt;span class="n"&gt;dummy_input&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                  &lt;span class="s1"&gt;&amp;#39;tmp.onnx&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                  &lt;span class="n"&gt;input_names&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;data&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+                  &lt;span class="n"&gt;output_names&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;output&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+                  &lt;span class="n"&gt;opset_version&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                  &lt;span class="n"&gt;verbose&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;system&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;python -m onnxsim tmp.onnx &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;onnx_path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+</content><link href="/archives/torch.upsample转ONNX的问题/" rel="alternate"/><published>2020-10-16T21:51:00+08:06</published></entry></feed>

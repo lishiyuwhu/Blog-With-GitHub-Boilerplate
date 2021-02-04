@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Plams,blog" />
+    <meta name="generator" content="Maverick 1.1" />
+    <meta name="template" content="Galileo" />
+    <link rel="alternate" type="application/rss+xml" title="Plams的个人博客 &raquo; RSS 2.0" href="/feed/index.xml" />
+    <link rel="alternate" type="application/atom+xml" title="Plams的个人博客 &raquo; ATOM 1.0" href="/feed/atom/index.xml" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/galileo-3f4dcc35c9.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/ExSearch/ExSearch-182e5a8868.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/katex.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700&display=swap">
+    <script>
+        var ExSearchConfig = {
+            root: "",
+            api: "https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/35ec923c9af3f9bfe45a2a09defd89ab.json"
+        }
+    </script>
+    
+<title>ALC整理 - Plams的个人博客</title>
+<meta name="author" content="" />
+<meta name="description" content=" 和CNN结合, 主动选择样本训练, 在训练放缓时?去active learning" />
+<meta property="og:title" content="ALC整理 - Plams的个人博客" />
+<meta property="og:description" content=" 和CNN结合, 主动选择样本训练, 在训练放缓时?去active learning" />
+<meta property="og:site_name" content="Plams的个人博客" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/archives/ALC整理/" />
+<meta property="og:image" content="" />
+<meta property="article:published_time" content="2017-09-15T19:15:28-00.00" />
+<meta name="twitter:title" content="ALC整理 - Plams的个人博客" />
+<meta name="twitter:description" content=" 和CNN结合, 主动选择样本训练, 在训练放缓时?去active learning" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:image" content="" />
+
+
+    
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+
+    </head>
+    
+    <body>
+        
+        <div class="container">
+            <header id="ga-header">
+                <div first>
+                    <aside id="ga-brand">
+                        <h1 class="brand"><a class="no-style" href="/">Plams的个人博客</a></h1>
+                        <p>Destination Determination Deliberation</p>
+                    </aside>
+                </div>
+                <div second id="ga-nav">
+                    <nav class="navs">
+                        <ul><li><a class="ga-highlight" href="/" target="_self">首页</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/archives/" target="_self">归档</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/about/" target="_self">关于</a></li><span class="separator">·</span><li><a href="#" target="_self" class="search-form-input ga-highlight">搜索</a></li></ul>
+                    </nav>
+                </div>
+            </header>
+            <div class="wrapper">
+                
+<main>    
+    <section class="ga-section ga-content">
+        <article class="yue">
+            <h1 class="ga-post_title">ALC整理</h1>
+            <span class="ga-post_meta ga-mono">
+                <span></span>
+                <time>
+                    2017-09-15
+                </time>
+                
+                in <a no-style class="category" href="/category/Default/">
+                    Default
+                </a>
+                
+                
+            </span>
+            <div class="ga-content_body">
+                <p><strong> 和CNN结合, 主动选择样本训练, 在训练放缓时?去active learning</strong></p>
+<hr>
+<p>ALC应该分为三部分, A-选择样例, L-学习主体, C-选择annotator.</p>
+<p>stream-based: 未标注样例逐个提交给样例选择部分, 由其决定是否需要标注.</p>
+<p>poo-baesd: 算法维护了一个未标注样例集, 从中挑选需要标注的样例.有几个方法方向:</p>
+<ul>
+<li><p>基于不确定度缩减. 信息熵作为依据, 信息熵大就意味着当前分类器难以正确分类, 也就是靠近分类边界的样本. loggistic regression和SVM都能很好的使用这个.</p>
+</li>
+<li><p>基于版本空间缩减(reduction of version space). 分歧度作为依据. QBC(Query By Committee)算法, 从版本空间随机选择若干假设构成一个委员会, 然选择委员会中的假设预测分歧最大的样例进行标注. 评价分期度常用的由JS散度, KL散度, vote entropy. 为了优化委员会的构成, 增强其多样性, 可以采用bagging, Adaboost等成熟的的分类器集成算法从版本空间中产生委员会.
+ cosine distance, 余弦相似度
+ committee构成方法: 不同的model / ensemble methods</p>
+<p>有的直接对原始的noise label集成得到一个integrated dataset再去使用. 应该也可以属于这种.</p>
+</li>
+</ul>
+<p><figure  size-undefined><img width="-1" height="-1" src="http://otivusbsc.bkt.clouddn.com/d9678560-473d-4e6a-9405-959516f3d0fb" /><figcaption>投票熵</figcaption></figure></p>
+<ul>
+<li>基于泛化误差缩减. 先选择一个lost function, 对每一个样例进行计算, 选择估计误差缩减最大的进行标注. 要针对不同的基准分类器提出相对应的算法, Naive Bayes, Bayesian net, kNN等. 这种方法直接针对分类器性能的最终评价指标, 理论上效果很好但计算量较大, 同时lost function的精度对性能也有很大影响</li>
+<li>其他手段. 预聚类( <del>😶又有了</del>)</li>
+</ul>
+<hr>
+<h1>一些文章</h1>
+<p><a href="http://ieeexplore.ieee.org/document/6413841/">Self-Taught Active Learning from Crowds</a>:</p>
+<p>那些低精度的annotator可以从orcle给出的答案中学习知识</p>
+<p><a href="https://link.springer.com/article/10.1007/s00521-017-2878-y">Learning from crowds with active learning and self-healing</a>:</p>
+<p>对于低精度的noise label, 先通过集成得到一个integrated dataset
+寻找样本的方法是-- pool-based , 使用uncertainty estimation 
+然后build m random decision trees,</p>
+
+            </div>
+        </article>
+        <div id="ga-tags">
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/tag/NOTES/">#NOTES</a>
+    </span>
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/tag/ALC/">#ALC</a>
+    </span>
+    
+</div>
+    </section>
+
+    
+<section id="ga-content_pager">
+
+    <div class="next">
+        <a class="ga-highlight" href="/archives/我, sci-hub, 下论文/">我, sci-hub, 下论文</a>
+        <p class="yue">昨天还能好好从ieee下paper, 现在突然就要purchase了.</p>
+    </div>
+
+
+    <div class="prev">
+        <a class="ga-highlight" href="/archives/一次好玩的作业-Cryptography-HW1/">一次好玩的作业-Cryptography-HW1</a>
+        <p class="yue">今天的密码学第一次课, 由大家上台展示事先准备好的程序, 要求如下:</p>
+    </div>
+
+</section>
+
+
+    
+
+</main>
+
+                <footer class="ga-mono" id="ga-footer">
+                    <section>
+                        <span id="ga-uptime"></span>
+                        <span class="brand">Plams的个人博客</span>
+                    </section>
+                    <section>
+                        <p class="copyright">
+                            <span>Copyright © 2021 Plams</span>
+                            <span>Powered by <a no-style href="https://github.com/AlanDecode/Maverick" target="_blank">Maverick & Galileo</a></span>
+                        </p>
+                        <div class="copyright">
+                            <span class="footer-addon">
+                                
+                            </span>
+                            <nav class="social-links">
+                                <ul><li><a class="no-style" title="GitHub" href="https://github.com/lishiyuwhu" target="_blank"><i class="gi gi-github"></i>GitHub</a></li></ul>
+                            </nav>
+                        </div>
+                    </section>
+                    <script>
+                        var site_build_date = "2018-3-28T16:16+08:00"
+                    </script>
+                    <script src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/galileo-dc4baa7cf4.js"></script>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!--katex-->
+    <script defer src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/katex.min.js"></script>
+    <script>
+    mathOpts = {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+        ]
+    };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/auto-render.min.js" onload="renderMathInElement(document.body, mathOpts);"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/ExSearch/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/ExSearch/ExSearch-493cb9cd89.js"></script>
+
+    
+    </body>
+</html>

@@ -1,0 +1,541 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Plams,blog" />
+    <meta name="generator" content="Maverick 1.1" />
+    <meta name="template" content="Galileo" />
+    <link rel="alternate" type="application/rss+xml" title="Plams的个人博客 &raquo; RSS 2.0" href="/feed/index.xml" />
+    <link rel="alternate" type="application/atom+xml" title="Plams的个人博客 &raquo; ATOM 1.0" href="/feed/atom/index.xml" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/galileo-3f4dcc35c9.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/ExSearch/ExSearch-182e5a8868.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/katex.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700&display=swap">
+    <script>
+        var ExSearchConfig = {
+            root: "",
+            api: "https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/35ec923c9af3f9bfe45a2a09defd89ab.json"
+        }
+    </script>
+    
+<title>算法2 - Plams的个人博客</title>
+<meta name="author" content="" />
+<meta name="description" content="顺时针打印矩阵" />
+<meta property="og:title" content="算法2 - Plams的个人博客" />
+<meta property="og:description" content="顺时针打印矩阵" />
+<meta property="og:site_name" content="Plams的个人博客" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/archives/算法2/" />
+<meta property="og:image" content="" />
+<meta property="article:published_time" content="2018-04-01T14:15:00-00.00" />
+<meta name="twitter:title" content="算法2 - Plams的个人博客" />
+<meta name="twitter:description" content="顺时针打印矩阵" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:image" content="" />
+
+
+    
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+
+    </head>
+    
+    <body>
+        
+        <div class="container">
+            <header id="ga-header">
+                <div first>
+                    <aside id="ga-brand">
+                        <h1 class="brand"><a class="no-style" href="/">Plams的个人博客</a></h1>
+                        <p>Destination Determination Deliberation</p>
+                    </aside>
+                </div>
+                <div second id="ga-nav">
+                    <nav class="navs">
+                        <ul><li><a class="ga-highlight" href="/" target="_self">首页</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/archives/" target="_self">归档</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/about/" target="_self">关于</a></li><span class="separator">·</span><li><a href="#" target="_self" class="search-form-input ga-highlight">搜索</a></li></ul>
+                    </nav>
+                </div>
+            </header>
+            <div class="wrapper">
+                
+<main>    
+    <section class="ga-section ga-content">
+        <article class="yue">
+            <h1 class="ga-post_title">算法2</h1>
+            <span class="ga-post_meta ga-mono">
+                <span></span>
+                <time>
+                    2018-04-01
+                </time>
+                
+                in <a no-style class="category" href="/category/Default/">
+                    Default
+                </a>
+                
+                
+            </span>
+            <div class="ga-content_body">
+                <h2>顺时针打印矩阵</h2>
+<!-- more -->
+
+
+
+<div class="highlight"><pre><span></span><span class="cm">/*解题思路：顺时针打印就是按圈数循环打印，一圈包含两行或者两列，在打印的时候会出现某</span>
+<span class="cm">一圈中只包含一行，要判断从左向右打印和从右向左打印的时候是否会出现重复打印，同样只</span>
+<span class="cm">包含一列时，要判断从上向下打印和从下向上打印的时候是否会出现重复打印的情况*/</span>
+<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">printMatrix</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">matrix</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="n">res</span><span class="p">;</span>
+        <span class="n">res</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+        <span class="kt">int</span> <span class="n">row</span><span class="o">=</span><span class="n">matrix</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="c1">//行数</span>
+        <span class="kt">int</span> <span class="n">collor</span><span class="o">=</span><span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">size</span><span class="p">();</span><span class="c1">//列数</span>
+        <span class="c1">//计算打印的圈数</span>
+        <span class="kt">int</span> <span class="n">circle</span><span class="o">=</span><span class="p">((</span><span class="n">row</span><span class="o">&lt;</span><span class="n">collor</span><span class="o">?</span><span class="nl">row</span><span class="p">:</span><span class="n">collor</span><span class="p">)</span><span class="mi">-1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="c1">//圈数</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">circle</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+            <span class="c1">//从左向右打印</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">i</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">collor</span><span class="o">-</span><span class="n">i</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+                <span class="n">res</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>         
+            <span class="c1">//从上往下的每一列数据</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="n">k</span><span class="o">&lt;</span><span class="n">row</span><span class="o">-</span><span class="n">i</span><span class="p">;</span><span class="n">k</span><span class="o">++</span><span class="p">)</span>
+                <span class="n">res</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">matrix</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">collor</span><span class="mi">-1</span><span class="o">-</span><span class="n">i</span><span class="p">]);</span>
+            <span class="c1">//判断是否会重复打印(从右向左的每行数据)</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">m</span><span class="o">=</span><span class="n">collor</span><span class="o">-</span><span class="n">i</span><span class="mi">-2</span><span class="p">;(</span><span class="n">m</span><span class="o">&gt;=</span><span class="n">i</span><span class="p">)</span><span class="o">&amp;&amp;</span><span class="p">(</span><span class="n">row</span><span class="o">-</span><span class="n">i</span><span class="mi">-1</span><span class="o">!=</span><span class="n">i</span><span class="p">);</span><span class="n">m</span><span class="o">--</span><span class="p">)</span>
+                <span class="n">res</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">matrix</span><span class="p">[</span><span class="n">row</span><span class="o">-</span><span class="n">i</span><span class="mi">-1</span><span class="p">][</span><span class="n">m</span><span class="p">]);</span>
+            <span class="c1">//判断是否会重复打印(从下往上的每一列数据)</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">=</span><span class="n">row</span><span class="o">-</span><span class="n">i</span><span class="mi">-2</span><span class="p">;(</span><span class="n">n</span><span class="o">&gt;</span><span class="n">i</span><span class="p">)</span><span class="o">&amp;&amp;</span><span class="p">(</span><span class="n">collor</span><span class="o">-</span><span class="n">i</span><span class="mi">-1</span><span class="o">!=</span><span class="n">i</span><span class="p">);</span><span class="n">n</span><span class="o">--</span><span class="p">)</span>
+                <span class="n">res</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">matrix</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">i</span><span class="p">]);}</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<h2>从上往下打印出二叉树</h2>
+<p>从上往下打印出二叉树的每个节点，同层节点从左至右打印。</p>
+<p>也就是层次遍历</p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">struct TreeNode {</span>
+<span class="cm">    int val;</span>
+<span class="cm">    struct TreeNode *left;</span>
+<span class="cm">    struct TreeNode *right;</span>
+<span class="cm">    TreeNode(int x) :</span>
+<span class="cm">            val(x), left(NULL), right(NULL) {</span>
+<span class="cm">    }</span>
+<span class="cm">};*/</span>
+<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">PrintFromTopToBottom</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">queue</span><span class="o">&lt;</span><span class="n">TreeNode</span><span class="o">*&gt;</span> <span class="n">tmp</span><span class="p">;</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ans</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">root</span><span class="p">)</span> <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+        <span class="n">tmp</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+        <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">tmp</span><span class="p">.</span><span class="n">empty</span><span class="p">()){</span>
+            <span class="k">auto</span> <span class="n">fr</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
+            <span class="n">tmp</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">fr</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span><span class="cm">/* 这里, 所有空指针都先入队然后再判断是不是要输出*/</span>
+            <span class="n">ans</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">fr</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">);</span>
+            <span class="n">tmp</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">fr</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
+            <span class="n">tmp</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">fr</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<h2>判断BTS的后序</h2>
+<p>输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。如果是则输出Yes,否则输出No。假设输入的数组的任意两个数字都互不相同。</p>
+<div class="highlight"><pre><span></span><span class="err">\</span><span class="o">*</span><span class="err">左子树一定比右子树小，因此去掉根结点后，数字分为</span><span class="n">left</span><span class="err">，</span><span class="n">right两部分</span><span class="err">，</span><span class="n">right部分的最后一个数字是右子树的根</span><span class="err">，且它比左子树所有结点的值大，因此我们可以每次只看有子树是否符合条件即可，即使到达了左子树，左子树也可以看出由左右子树组成的树还像右子树那样处理</span><span class="p">.</span>
+<span class="err">对于左子树回到了原问题，对于右子树，左子树的所有值都比右子树的根小，可以暂时把他看出右子树的左子树，只需看看右子树的右子树是否符合要求即可</span><span class="p">.</span><span class="o">*</span>\
+
+<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">bool</span> <span class="n">VerifySquenceOfBST</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">sequence</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">sequence</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">len</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">len</span><span class="o">--</span><span class="p">){</span>
+            <span class="k">while</span><span class="p">(</span><span class="n">sequence</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="n">sequence</span><span class="p">[</span><span class="n">len</span><span class="p">])</span> <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+            <span class="k">while</span><span class="p">(</span><span class="n">sequence</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;</span><span class="n">sequence</span><span class="p">[</span><span class="n">len</span><span class="p">])</span> <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">&lt;</span><span class="n">len</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+            <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<h2>二叉树和为某一值的路径</h2>
+<p>输入一颗二叉树和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。</p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">struct TreeNode {</span>
+<span class="cm">    int val;</span>
+<span class="cm">    struct TreeNode *left;</span>
+<span class="cm">    struct TreeNode *right;</span>
+<span class="cm">    TreeNode(int x) :</span>
+<span class="cm">            val(x), left(NULL), right(NULL) {</span>
+<span class="cm">    }</span>
+<span class="cm">};*/</span>
+<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">FindPath</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">root</span><span class="p">,</span><span class="kt">int</span> <span class="n">expectNumber</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">root</span><span class="o">==</span><span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="n">buffer</span><span class="p">;</span>
+        <span class="n">tmp</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">expectNumber</span><span class="o">-</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="o">==</span><span class="nb">NULL</span> <span class="o">&amp;&amp;</span> <span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="o">==</span><span class="nb">NULL</span><span class="p">)</span>
+            <span class="n">buffer</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">tmp</span><span class="p">);</span>
+        <span class="n">FindPath</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span> <span class="n">expectNumber</span><span class="o">-</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">);</span>
+        <span class="n">FindPath</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">,</span><span class="n">expectNumber</span><span class="o">-</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">tmp</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">tmp</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+        <span class="k">return</span> <span class="n">buffer</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">tmp</span><span class="p">;</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">buffer</span><span class="p">;</span>
+
+<span class="p">};</span>
+</pre></div>
+<h2>复杂链表的复制</h2>
+<p>输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点），返回结果为复制后复杂链表的head。（注意，输出结果中请不要返回参数中的节点引用，否则判题程序会直接返回空）</p>
+<p>一种是</p>
+
+<pre><code>    /*
+        1、复制每个节点，如：复制节点A得到A1，将A1插入节点A后面
+        2、遍历链表，A1-&gt;random = A-&gt;random-&gt;next;
+        3、将链表拆分成原链表和复制后的链表
+    */</code></pre>
+<p>另一种用MAP</p>
+
+<pre><code>/*
+struct RandomListNode {
+    int label;
+    struct RandomListNode *next, *random;
+    RandomListNode(int x) :
+            label(x), next(NULL), random(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    RandomListNode* Clone(RandomListNode* pHead)
+    {
+        if(pHead==NULL) return NULL;
+
+        map&lt;RandomListNode*, RandomListNode*&gt; m;
+        RandomListNode* pHead1 = pHead;
+        RandomListNode* pHead2 = new RandomListNode(pHead-&gt;label);
+        RandomListNode* newHead = pHead2;
+
+        m[pHead1] = pHead2;
+        while(pHead1){
+            if(pHead1-&gt;next)
+                pHead2-&gt;next = new RandomListNode(pHead1-&gt;next-&gt;label);
+            else
+                pHead2-&gt;next = NULL;
+            pHead1 = pHead1-&gt;next;
+            pHead2 = pHead2-&gt;next;
+            m[pHead1] = pHead2;
+        }
+
+        pHead1 = pHead;
+        pHead2 = newHead;
+        while(pHead1){
+            pHead2-&gt;random = m[pHead1-&gt;random];
+            pHead1 = pHead1-&gt;next;
+            pHead2 = pHead2-&gt;next;
+        }
+        return newHead;
+    }
+};</code></pre>
+<h2>字符串的全排列</h2>
+<p>输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,则打印出由字符a,b,c所能排列出来的所有字符串abc,acb,bac,bca,cab和cba。
+输入描述:
+输入一个字符串,长度不超过9(可能有字符重复),字符只包括大小写字母。</p>
+
+<pre><code>
+class Solution {
+public:
+    vector&lt;string&gt; Permutation(string str) {
+        if(str.empty())
+            return ans;
+        chang(str, 0, str.size());
+        sort(ans.begin(),ans.end());
+        auto it = unique(ans.begin(),ans.end());
+        ans.erase(it,ans.end());
+        return ans;
+         
+    }
+    void chang(string &amp;str,int start,int len){
+        if(start == len)
+            ans.push_back(str);
+        //
+        for(int i = start; i &lt; len; i++){
+            swap(str[start],str[i]);
+            chang(str, start+1,len);
+            swap(str[start],str[i]);
+        } 
+    }
+         
+    vector&lt;string&gt; ans;
+};</code></pre>
+<h2>数组中出现次数超过一半的数字</h2>
+<p>数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。</p>
+
+<pre><code>class Solution {
+public:
+    int MoreThanHalfNum_Solution(vector&lt;int&gt; numbers) {
+        map&lt;int,int&gt; m;
+        int num=0;
+        int len = numbers.size();
+        for (auto i : numbers){
+            num = ++m[i];
+            if (num&gt; (len)/2)
+                return i;
+        }
+        return 0;
+    }
+};</code></pre>
+<h2>最大子数组连续和</h2>
+<p>DP</p>
+
+<pre><code>class Solution {
+public:
+    int FindGreatestSumOfSubArray(vector&lt;int&gt; array) {
+        vector&lt;int&gt; dp(array.size(),0);
+        dp[0] = array[0];
+        int mx=INT_MIN;
+        for(int i=0; i&lt;=array.size()-1; ++i){
+            if (dp[i-1]&lt;=0) dp[i]=array[i];
+            else dp[i]=array[i] + dp[i-1];
+            if (dp[i]&gt;mx) mx=dp[i];
+        }
+        return mx;
+    }
+};</code></pre>
+<p>贪心</p>
+
+<pre><code>class Solution {
+public:
+    int FindGreatestSumOfSubArray(vector&lt;int&gt; array) {
+        int cursum=0;
+        int massubsum=INT_MIN;
+        for(int i=0; i&lt;array.size(); ++i){
+            if(cursum&lt;=0)
+                cursum=array[i];
+            else
+                cursum+=array[i];
+
+            if(cursum&gt;massubsum)
+                massubsum = cursum;
+        }
+        return massubsum;
+    }
+};</code></pre>
+<h2>把数组排成最小</h2>
+<p>输入一个正整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。例如输入数组{3，32，321}，则打印出这三个数字能排成的最小数字为321323。</p>
+<p>自定义sort</p>
+
+<pre><code>class Solution {
+public:
+    static bool cmp(int a, int b){
+        string A = to_string(a);
+        string B = to_string(b);
+        return A+B &lt; B+A;
+        }
+    string PrintMinNumber(vector&lt;int&gt; numbers) {
+        string ans = "";
+        sort(numbers.begin(), numbers.end(), cmp);
+        for (auto i : numbers)
+            ans += to_string(i);
+        return ans;
+    }
+};</code></pre>
+<h2>第一次只出现一次的字符</h2>
+<p>在一个字符串(1&lt;=字符串长度&lt;=10000，全部由字母组成)中找到第一个只出现一次的字符,并返回它的位置</p>
+
+<pre><code>class Solution {
+public:
+    int FirstNotRepeatingChar(string str) {
+        map&lt;char, int&gt; mp;
+        for(int i=0; i&lt;str.size(); ++i)
+            mp[str[i]]++;
+        for(int i=0; i&lt;str.size(); ++i){
+            if(mp[str[i]] == 1)
+                return i;
+        }
+        return -1;
+    }
+};</code></pre>
+<h2>两个链表的第一个公共节点</h2>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">struct ListNode {</span>
+<span class="cm">    int val;</span>
+<span class="cm">    struct ListNode *next;</span>
+<span class="cm">    ListNode(int x) :</span>
+<span class="cm">            val(x), next(NULL) {</span>
+<span class="cm">    }</span>
+<span class="cm">};*/</span>
+<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">ListNode</span><span class="o">*</span> <span class="n">FindFirstCommonNode</span><span class="p">(</span> <span class="n">ListNode</span><span class="o">*</span> <span class="n">pHead1</span><span class="p">,</span> <span class="n">ListNode</span><span class="o">*</span> <span class="n">pHead2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ListNode</span><span class="o">*</span> <span class="n">p1</span><span class="p">,</span> <span class="o">*</span><span class="n">p2</span><span class="p">;</span>
+        <span class="n">p1</span> <span class="o">=</span> <span class="n">pHead1</span><span class="p">;</span>
+        <span class="n">p2</span> <span class="o">=</span> <span class="n">pHead2</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">p1</span><span class="o">!=</span><span class="n">p2</span><span class="p">){</span>
+            <span class="n">p1</span> <span class="o">=</span> <span class="p">(</span><span class="n">p1</span><span class="o">==</span><span class="nb">NULL</span><span class="p">)</span><span class="o">?</span><span class="nl">pHead2</span><span class="p">:</span><span class="n">p1</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+            <span class="n">p2</span> <span class="o">=</span> <span class="p">(</span><span class="n">p2</span><span class="o">==</span><span class="nb">NULL</span><span class="p">)</span><span class="o">?</span><span class="nl">pHead1</span><span class="p">:</span><span class="n">p2</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">p1</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<h2>二叉树的深度</h2>
+
+<pre><code>/*
+struct TreeNode {
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+    TreeNode(int x) :
+            val(x), left(NULL), right(NULL) {
+    }
+};*/
+class Solution {
+public:
+    int TreeDepth(TreeNode* pRoot)
+    {
+        if(pRoot==NULL)
+            return 0;
+        return max(TreeDepth(pRoot-&gt;left), TreeDepth(pRoot-&gt;right))+1;
+    }
+};</code></pre>
+<h2>左旋字符串</h2>
+<p>汇编语言中有一种移位指令叫做循环左移（ROL），现在有个简单的任务，就是用字符串模拟这个指令的运算结果。对于一个给定的字符序列S，请你把其循环左移K位后的序列输出。例如，字符序列S=”abcXYZdef”,要求输出循环左移3位后的结果，即“XYZdefabc”。是不是很简单？OK，搞定它！</p>
+
+<pre><code>class Solution {
+public:
+    string LeftRotateString(string str, int n) {
+        if(str.size()==0) return "";
+        n = n%str.size();
+        reverse(str.begin(), str.begin()+n);
+        reverse(str.begin()+n, str.end());
+        reverse(str.begin(), str.end());
+
+
+       /* reverse(str.begin(), str.end());
+        reverse(str.begin(), str.begin() + str.size() - n);
+        reverse(str.begin() + str.size() - n, str.end());*/
+        return str;
+    }
+};</code></pre>
+<h1>#</h1>
+<p>求1+2+3+...+n，要求不能使用乘除法、for、while、if、else、switch、case等关键字及条件判断语句（A?B:C）。</p>
+<p>解题思路：
+1.需利用逻辑与的短路特性实现递归终止。 2.当n==0时，(n&gt;0)&amp;&amp;((sum+=Sum_Solution(n-1))&gt;0)只执行前面的判断，为false，然后直接返回0；
+3.当n&gt;0时，执行sum+=Sum_Solution(n-1)，实现递归计算Sum_Solution(n)。</p>
+
+<pre><code>    public int Sum_Solution(int n) {
+        int sum = n;
+        boolean ans = (n&gt;0)&amp;&amp;((sum+=Sum_Solution(n-1))&gt;0);
+        return sum;
+    }</code></pre>
+<h2>不用加减乘除做加法</h2>
+<p>class Solution {
+public:
+    int Add(int num1, int num2)
+    {
+        if(num2==0) return num1;
+        return Add(num1^num2, (num1&amp;num2)&lt;&lt;1);
+    }
+};</p>
+<p>扩展题目：</p>
+<p>不使用新的变量，交换两个变量的值
+方法一：基于加减法</p>
+
+<pre><code>a = a + b;
+b = a - b;
+a = a - b;</code></pre>
+<p>方法二：基于异或运算</p>
+
+<pre><code>a = a ^ b;
+b = a ^ b;
+a = a ^ b;</code></pre>
+
+            </div>
+        </article>
+        <div id="ga-tags">
+    
+</div>
+    </section>
+
+    
+<section id="ga-content_pager">
+
+    <div class="next">
+        <a class="ga-highlight" href="/archives/算法3/">算法3</a>
+        <p class="yue">BFS走迷宫</p>
+    </div>
+
+
+    <div class="prev">
+        <a class="ga-highlight" href="/archives/算法题1/">算法题1</a>
+        <p class="yue">从尾到头打印链表</p>
+    </div>
+
+</section>
+
+
+    
+
+</main>
+
+                <footer class="ga-mono" id="ga-footer">
+                    <section>
+                        <span id="ga-uptime"></span>
+                        <span class="brand">Plams的个人博客</span>
+                    </section>
+                    <section>
+                        <p class="copyright">
+                            <span>Copyright © 2021 Plams</span>
+                            <span>Powered by <a no-style href="https://github.com/AlanDecode/Maverick" target="_blank">Maverick & Galileo</a></span>
+                        </p>
+                        <div class="copyright">
+                            <span class="footer-addon">
+                                
+                            </span>
+                            <nav class="social-links">
+                                <ul><li><a class="no-style" title="GitHub" href="https://github.com/lishiyuwhu" target="_blank"><i class="gi gi-github"></i>GitHub</a></li></ul>
+                            </nav>
+                        </div>
+                    </section>
+                    <script>
+                        var site_build_date = "2018-3-28T16:16+08:00"
+                    </script>
+                    <script src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/galileo-dc4baa7cf4.js"></script>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!--katex-->
+    <script defer src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/katex.min.js"></script>
+    <script>
+    mathOpts = {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+        ]
+    };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/auto-render.min.js" onload="renderMathInElement(document.body, mathOpts);"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/ExSearch/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/ExSearch/ExSearch-493cb9cd89.js"></script>
+
+    
+    </body>
+</html>

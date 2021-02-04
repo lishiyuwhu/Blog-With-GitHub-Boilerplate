@@ -1,0 +1,195 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Plams,blog" />
+    <meta name="generator" content="Maverick 1.1" />
+    <meta name="template" content="Galileo" />
+    <link rel="alternate" type="application/rss+xml" title="Plams的个人博客 &raquo; RSS 2.0" href="/feed/index.xml" />
+    <link rel="alternate" type="application/atom+xml" title="Plams的个人博客 &raquo; ATOM 1.0" href="/feed/atom/index.xml" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/galileo-3f4dcc35c9.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/ExSearch/ExSearch-182e5a8868.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/katex.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700&display=swap">
+    <script>
+        var ExSearchConfig = {
+            root: "",
+            api: "https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/35ec923c9af3f9bfe45a2a09defd89ab.json"
+        }
+    </script>
+    
+<title>Deep-Learning-Papers-Reading-Roadmap Notes Part 1 - Plams的个人博客</title>
+<meta name="author" content="" />
+<meta name="description" content="https://github.com/songrotek/Deep-Learning-Papers-Reading-Roadmap" />
+<meta property="og:title" content="Deep-Learning-Papers-Reading-Roadmap Notes Part 1 - Plams的个人博客" />
+<meta property="og:description" content="https://github.com/songrotek/Deep-Learning-Papers-Reading-Roadmap" />
+<meta property="og:site_name" content="Plams的个人博客" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/archives/Deep-Learning-Papers-Reading-Roadmap Notes Part 1/" />
+<meta property="og:image" content="" />
+<meta property="article:published_time" content="2017-08-02T13:27:54-00.00" />
+<meta name="twitter:title" content="Deep-Learning-Papers-Reading-Roadmap Notes Part 1 - Plams的个人博客" />
+<meta name="twitter:description" content="https://github.com/songrotek/Deep-Learning-Papers-Reading-Roadmap" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:image" content="" />
+
+
+    
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+
+    </head>
+    
+    <body>
+        
+        <div class="container">
+            <header id="ga-header">
+                <div first>
+                    <aside id="ga-brand">
+                        <h1 class="brand"><a class="no-style" href="/">Plams的个人博客</a></h1>
+                        <p>Destination Determination Deliberation</p>
+                    </aside>
+                </div>
+                <div second id="ga-nav">
+                    <nav class="navs">
+                        <ul><li><a class="ga-highlight" href="/" target="_self">首页</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/archives/" target="_self">归档</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/about/" target="_self">关于</a></li><span class="separator">·</span><li><a href="#" target="_self" class="search-form-input ga-highlight">搜索</a></li></ul>
+                    </nav>
+                </div>
+            </header>
+            <div class="wrapper">
+                
+<main>    
+    <section class="ga-section ga-content">
+        <article class="yue">
+            <h1 class="ga-post_title">Deep-Learning-Papers-Reading-Roadmap Notes Part 1</h1>
+            <span class="ga-post_meta ga-mono">
+                <span></span>
+                <time>
+                    2017-08-02
+                </time>
+                
+                in <a no-style class="category" href="/category/Default/">
+                    Default
+                </a>
+                
+                
+            </span>
+            <div class="ga-content_body">
+                <p><a href="https://github.com/songrotek/Deep-Learning-Papers-Reading-Roadmap">https://github.com/songrotek/Deep-Learning-Papers-Reading-Roadmap</a></p>
+<h1>1.1 Survey</h1>
+<p>[1] LeCun, Yann, Yoshua Bengio, and Geoffrey Hinton. "Deep learning." Nature 521.7553 (2015): 436-444. [pdf] (Three Giants' Survey) ⭐️⭐️⭐️⭐️⭐️</p>
+<!-- more -->
+
+<h2>NatureDeepReview</h2>
+<p>传统的机器学习局限于抽feature.</p>
+<p>Representation learning, 表征学习可以让机器从原始数据出发自动得出representation.
+DL把它转化到了一个更加抽象的level.</p>
+<h3>Supervised learning</h3>
+<p>监督学习是机器学习最通常的形式. 然后举了一个图片分类的例子, 然后采用梯度法去改变weight.
+实作时, 用SGD. 这里'随机'的意思是, 每一个小的set of example都对整个集上面的平均梯度给出了noisy estimate. 这里我的理解就是, 用抽样的表现去拟合整个样本的表现, 也导致了每次迭代并不一定是向着整体最优方向去的.</p>
+<p>线性分类器的效果不好. 这个shadow分类器就依赖于特征提取.为了改进分类器, 有人瞄上了通用的非线性feature, 也就是核方法.</p>
+<h3>Backpropagation to train multilayer architectures</h3>
+<p>先简述了一下BP算法的思想, 也就是链式法则嘛. 然后说了下激活函数, sigmoid和relu.
+然后是local minima和saddle point.</p>
+<h3>Convolutional neural networks</h3>
+<p>1D for signals and sequences, including language; 2D for images or audio spectrograms, and 3D for video or volumetric images.
+所谓的1d和2d.</p>
+<p>4个key idea: local connections, shared weights, pooling and the use of
+many layers</p>
+<h3>Image understanding with deep convolutional networks</h3>
+<p>吹一波CNN</p>
+<h3>Distributed representations and language processing</h3>
+<p>word2vector</p>
+<h3>Recurrent neural networks</h3>
+<p>basic RNN -&gt; LSTM, 有了记忆了, 聪明的智商又能占领高地了.</p>
+<h3>END</h3>
+<p>总的来说, 这篇主要是在讲这一二十年的历史, 基本上都在课里或者书本里说过, 读着是没什么意思. 不知道历史的可以看看, 知道的权当系列的开胃小菜了.</p>
+<hr>
+<h1>1.2 Deep Belief Network(DBN)(Milestone of Deep Learning Eve)</h1>
+<p>对于DBN和RBM我是拒绝的.</p>
+<h1>1.3 ImageNet Evolution(Deep Learning broke out from here)</h1>
+<p>[4] Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. "Imagenet classification with deep convolutional neural networks." Advances in neural information processing systems. 2012. [pdf] (AlexNet, Deep Learning Breakthrough) ⭐️⭐️⭐️⭐️⭐️</p>
+<h2>ImageNet Classification with Deep Convolutional Neural Networks</h2>
+<p>看一下标题, 看一下作者, 就能感觉到这篇paper的重量.</p>
+
+            </div>
+        </article>
+        <div id="ga-tags">
+    
+</div>
+    </section>
+
+    
+<section id="ga-content_pager">
+
+    <div class="next">
+        <a class="ga-highlight" href="/archives/ALC papers NOTES/">ALC papers NOTES</a>
+        <p class="yue">感冒又在床上躺了几天, 该起来干活了.</p>
+    </div>
+
+
+    <div class="prev">
+        <a class="ga-highlight" href="/archives/CNN & my_cnn_fast_cifar10.py by tensorlayer/">CNN & my_cnn_fast_cifar10.py by tensorlayer</a>
+        <p class="yue">Convolutional Neural Network</p>
+    </div>
+
+</section>
+
+
+    
+
+</main>
+
+                <footer class="ga-mono" id="ga-footer">
+                    <section>
+                        <span id="ga-uptime"></span>
+                        <span class="brand">Plams的个人博客</span>
+                    </section>
+                    <section>
+                        <p class="copyright">
+                            <span>Copyright © 2021 Plams</span>
+                            <span>Powered by <a no-style href="https://github.com/AlanDecode/Maverick" target="_blank">Maverick & Galileo</a></span>
+                        </p>
+                        <div class="copyright">
+                            <span class="footer-addon">
+                                
+                            </span>
+                            <nav class="social-links">
+                                <ul><li><a class="no-style" title="GitHub" href="https://github.com/lishiyuwhu" target="_blank"><i class="gi gi-github"></i>GitHub</a></li></ul>
+                            </nav>
+                        </div>
+                    </section>
+                    <script>
+                        var site_build_date = "2018-3-28T16:16+08:00"
+                    </script>
+                    <script src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/galileo-dc4baa7cf4.js"></script>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!--katex-->
+    <script defer src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/katex.min.js"></script>
+    <script>
+    mathOpts = {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+        ]
+    };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/auto-render.min.js" onload="renderMathInElement(document.body, mathOpts);"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/ExSearch/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/ExSearch/ExSearch-493cb9cd89.js"></script>
+
+    
+    </body>
+</html>

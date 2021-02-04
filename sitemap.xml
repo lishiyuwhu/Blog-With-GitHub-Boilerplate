@@ -6,14 +6,189 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
     <loc>/about/</loc>
+    <lastmod>2020-02-04</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.8</priority>
+</url>
+
+<url>
+    <loc>/about/</loc>
     <lastmod>2017-06-28</lastmod>
     <changefreq>always</changefreq>
     <priority>0.8</priority>
 </url>
 
 <url>
-    <loc>/archives/typography/</loc>
-    <lastmod>2019-12-18</lastmod>
+    <loc>/archives/torch.upsample转ONNX的问题/</loc>
+    <lastmod>2020-10-16</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/pytorch的dataloader输出大小不一样的batch/</loc>
+    <lastmod>2020-10-14</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/解决_csv.Error line contains NULL byte/</loc>
+    <lastmod>2019-09-28</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/编译tf_serving/</loc>
+    <lastmod>2019-09-22</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/HQL 报错 Hive Runtime Error while closing operators/</loc>
+    <lastmod>2019-09-04</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/简单实用的python CLICK/</loc>
+    <lastmod>2019-08-29</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/.sh无法执行No such file or directory/</loc>
+    <lastmod>2019-08-20</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/魔女 BLOG 初中級日麻講座 笔记/</loc>
+    <lastmod>2019-02-28</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/ssh到win的powershell 的一堆坑/</loc>
+    <lastmod>2018-12-20</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/解决tmux与使用cmder ssh后的冲突问题/</loc>
+    <lastmod>2018-12-20</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/ssh连接windows/</loc>
+    <lastmod>2018-12-10</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/Growing Story Forest Online from Massive Breaking News/</loc>
+    <lastmod>2018-11-12</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/船模 入门 用具 列表/</loc>
+    <lastmod>2018-10-17</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/田宫 球磨 1/700 无改 素组/</loc>
+    <lastmod>2018-10-10</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/学研×カプコン「リオレウス」天空的王者 雄火龍/</loc>
+    <lastmod>2018-10-10</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/latexdiff使用与踩坑/</loc>
+    <lastmod>2018-09-25</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/Adobe JPEG图像量化表提取/</loc>
+    <lastmod>2018-07-12</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/Learning Rich Features for Image Manipulation Detection论文笔记/</loc>
+    <lastmod>2018-07-10</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/python代码规范/</loc>
+    <lastmod>2018-07-09</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/sublime解决中文渲染的问题.md/</loc>
+    <lastmod>2018-07-08</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/算法4/</loc>
+    <lastmod>2018-04-03</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/算法3/</loc>
+    <lastmod>2018-04-03</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/算法2/</loc>
+    <lastmod>2018-04-01</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/算法题1/</loc>
+    <lastmod>2018-03-29</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/SumatraPDF修改背景色/</loc>
+    <lastmod>2018-01-18</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
 </url>
@@ -21,6 +196,188 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
     <loc>/archives/Deep steganalysis/</loc>
     <lastmod>2017-12-25</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/记一个巨傻×的错误/</loc>
+    <lastmod>2017-12-22</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/Hexo Blog相关/</loc>
+    <lastmod>2017-11-30</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/随机的将data分为两部分/</loc>
+    <lastmod>2017-11-30</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/从LeNet到DenseNet/</loc>
+    <lastmod>2017-11-30</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/TFrecords使用, 数据集制作相关总结/</loc>
+    <lastmod>2017-11-30</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/ML Lecture 19 Transfer Learning/</loc>
+    <lastmod>2017-11-28</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/tensorlayer的坑.md/</loc>
+    <lastmod>2017-11-28</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/pandas 操作CSV/</loc>
+    <lastmod>2017-11-25</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/Fizz Buzz/</loc>
+    <lastmod>2017-11-22</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/手撕Batch normalization/</loc>
+    <lastmod>2017-11-22</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/DLBook-NOTES-9卷积网络/</loc>
+    <lastmod>2017-10-11</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/一个好用的Github插件--gayhub/</loc>
+    <lastmod>2017-09-20</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/ALC-Entorpy&Diversity/</loc>
+    <lastmod>2017-09-16</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/我, sci-hub, 下论文/</loc>
+    <lastmod>2017-09-16</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/ALC整理/</loc>
+    <lastmod>2017-09-15</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/一次好玩的作业-Cryptography-HW1/</loc>
+    <lastmod>2017-09-15</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/茶楼酒肆/</loc>
+    <lastmod>2017-09-14</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/DLBook-NOTES-8深度模型中的优化/</loc>
+    <lastmod>2017-09-14</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/CVPR上一篇关于active learing的paper/</loc>
+    <lastmod>2017-09-13</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/ALC papers NOTES/</loc>
+    <lastmod>2017-08-06</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/Deep-Learning-Papers-Reading-Roadmap Notes Part 1/</loc>
+    <lastmod>2017-08-02</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/CNN & my_cnn_fast_cifar10.py by tensorlayer/</loc>
+    <lastmod>2017-07-30</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/为tensorflow模块在spyder添加代码补全/</loc>
+    <lastmod>2017-07-26</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/DLBook NOTES 7深度学习中的正则化/</loc>
+    <lastmod>2017-07-26</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/统计学习方法NOTES/</loc>
+    <lastmod>2017-07-23</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>/archives/PRML NOTES/</loc>
+    <lastmod>2017-07-22</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
 </url>

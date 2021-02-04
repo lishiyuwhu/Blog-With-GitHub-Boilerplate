@@ -1,0 +1,207 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Plams,blog" />
+    <meta name="generator" content="Maverick 1.1" />
+    <meta name="template" content="Galileo" />
+    <link rel="alternate" type="application/rss+xml" title="Plams的个人博客 &raquo; RSS 2.0" href="/feed/index.xml" />
+    <link rel="alternate" type="application/atom+xml" title="Plams的个人博客 &raquo; ATOM 1.0" href="/feed/atom/index.xml" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/galileo-3f4dcc35c9.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/ExSearch/ExSearch-182e5a8868.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/katex.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700&display=swap">
+    <script>
+        var ExSearchConfig = {
+            root: "",
+            api: "https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/35ec923c9af3f9bfe45a2a09defd89ab.json"
+        }
+    </script>
+    
+<title>DLBook-NOTES-8深度模型中的优化 - Plams的个人博客</title>
+<meta name="author" content="" />
+<meta name="description" content="8.1 学习和纯优化有什么不同" />
+<meta property="og:title" content="DLBook-NOTES-8深度模型中的优化 - Plams的个人博客" />
+<meta property="og:description" content="8.1 学习和纯优化有什么不同" />
+<meta property="og:site_name" content="Plams的个人博客" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/archives/DLBook-NOTES-8深度模型中的优化/" />
+<meta property="og:image" content="" />
+<meta property="article:published_time" content="2017-09-14T10:05:59-00.00" />
+<meta name="twitter:title" content="DLBook-NOTES-8深度模型中的优化 - Plams的个人博客" />
+<meta name="twitter:description" content="8.1 学习和纯优化有什么不同" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:image" content="" />
+
+
+    
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+
+    </head>
+    
+    <body>
+        
+        <div class="container">
+            <header id="ga-header">
+                <div first>
+                    <aside id="ga-brand">
+                        <h1 class="brand"><a class="no-style" href="/">Plams的个人博客</a></h1>
+                        <p>Destination Determination Deliberation</p>
+                    </aside>
+                </div>
+                <div second id="ga-nav">
+                    <nav class="navs">
+                        <ul><li><a class="ga-highlight" href="/" target="_self">首页</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/archives/" target="_self">归档</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/about/" target="_self">关于</a></li><span class="separator">·</span><li><a href="#" target="_self" class="search-form-input ga-highlight">搜索</a></li></ul>
+                    </nav>
+                </div>
+            </header>
+            <div class="wrapper">
+                
+<main>    
+    <section class="ga-section ga-content">
+        <article class="yue">
+            <h1 class="ga-post_title">DLBook-NOTES-8深度模型中的优化</h1>
+            <span class="ga-post_meta ga-mono">
+                <span></span>
+                <time>
+                    2017-09-14
+                </time>
+                
+                in <a no-style class="category" href="/category/Default/">
+                    Default
+                </a>
+                
+                
+            </span>
+            <div class="ga-content_body">
+                <h2>8.1 学习和纯优化有什么不同</h2>
+<p>我们的目标是降低期望泛化误差, 也就是risk, 我们并不直接最优化风险, 而是去最优化经验风险. 但是, 经验风险的最小化很容易导致过拟合, 而且, 很多情况下这么做并不可行.</p>
+<p>代理损失函数
+    代理损失函数作为原损失的代理，还具备一些优点。例如，正确类别的负对数似然通常用作 0−1 损失的替代。负对数似然允许模型估计给定样本的类别的条件概率，如果该模型效果好，那么它能够输出期望最小分类误差所对应的类别</p>
+<p>提前终止
+    和优化不同的是, 提前终止时代理损失函数仍然有较大的导数</p>
+<p>batch, stochastic 和 online
+    使用整个训练集的优化算法被称为批量（batch）或确定性（deterministic）梯度算法，因为它们会在一个大批量中同时处理所有样本。这个术语可能有点令人困惑，因为这个词 “批量’’ 也经常被用来描述小批量随机梯度下降算法中用到的小批量样本。通常，术语 “批量梯度下降’’ 指使用全部训练集，而术语 “批量’’ 单独出现时指一组样本。例如，我们普遍使用术语 “批量大小’’ 表示小批量的大小。
+    现在, minibatch也被称作stochastic</p>
+<p>可能是由于小批量在学习过程中加入了噪声，它们会有一些 <strong>正则化效果</strong>  (Wilson and Martinez, 2003)。泛化误差通常在批量大小为 1 时最好。因为梯度估计的高方差，小批量训练需要 <strong>较小的学习率</strong> 以保持稳定性。因为降低的学习率和消耗更多步骤来遍历整个训练集都会产生更多的步骤，所以会导致总的运行时间非常大。</p>
+<p>有因为minibatch引入了噪声, 所以不同的更新方式要有恰当的batch. 仅基于梯度 g 的更新方法通常相对鲁棒，并能使用较小的批量获得成功，如 100。使用Hessian矩阵 H，计算如 H −1 g 更新的二阶方法通常需要更大的批量，如 10,000</p>
+<!-- more -->
+
+<h2>8.2 神经网络优化中的挑战</h2>
+<p>病态问题一般被认为存在于神经网络训练过程中。病态体现在随机梯度下降会‘‘卡’’ 在某些情况，此时即使很小的更新步长也会增加代价函数。</p>
+<p>实际上, 对于NN, 大部分地方可能是很平坦的, 代价很高的局部极小值会很稀有.</p>
+<p>更加令人关注的是鞍点, 而且很不幸的是, 真实的NN中也存在包含很多高代价鞍点的损失函数.</p>
+<p>悬崖和梯度爆炸(RNN中经常看到)
+    启发式梯度截断(gradient clipping) : 其基本想法源自梯度并没有指明最佳步长，只说明了在无限小区域内的最佳方向。当传统的梯度下降算法提议更新很大一步时，启发式梯度截断会干涉来减小步长，从而使其不太可能走出梯度近似为最陡下降方向的悬崖区域。</p>
+<h2>8.3 基本算法</h2>
+<h3>SGD</h3>
+<p>保证SGD收敛的一个充分条件是: 学习率的sum等于无穷大, 平方和小于无穷大. 实作中, 线性的衰减学习率, 在一定步数之后使学习率保持常数.</p>
+<p>关于学习率:</p>
+<p><figure  size-undefined><img width="-1" height="-1" src="http://otivusbsc.bkt.clouddn.com/0d67e28a-fc0a-4138-8860-bd15ef4eef1f" /></figure></p>
+<h3>动量 momentum</h3>
+<p><figure  size-undefined><img width="-1" height="-1" src="http://otivusbsc.bkt.clouddn.com/0423f958-d1be-4dd6-9403-00d710ae7a73" /></figure></p>
+<p>实际上, 动量法的超参是$\frac{1}{1-\alpha}$</p>
+<h2>8.4 参数初始化策略</h2>
+
+            </div>
+        </article>
+        <div id="ga-tags">
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/tag/N/">#N</a>
+    </span>
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/tag/O/">#O</a>
+    </span>
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/tag/T/">#T</a>
+    </span>
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/tag/E/">#E</a>
+    </span>
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/tag/S/">#S</a>
+    </span>
+    
+</div>
+    </section>
+
+    
+<section id="ga-content_pager">
+
+    <div class="next">
+        <a class="ga-highlight" href="/archives/茶楼酒肆/">茶楼酒肆</a>
+        <p class="yue">不FQ的话评论区模块竟然就直接没了, 我还以为配置出了问题查了好久</p>
+    </div>
+
+
+    <div class="prev">
+        <a class="ga-highlight" href="/archives/CVPR上一篇关于active learing的paper/">CVPR上一篇关于active learing的paper</a>
+        <p class="yue">这篇在OneNote里面躺了一个多月了, 今天得闲看看.</p>
+    </div>
+
+</section>
+
+
+    
+
+</main>
+
+                <footer class="ga-mono" id="ga-footer">
+                    <section>
+                        <span id="ga-uptime"></span>
+                        <span class="brand">Plams的个人博客</span>
+                    </section>
+                    <section>
+                        <p class="copyright">
+                            <span>Copyright © 2021 Plams</span>
+                            <span>Powered by <a no-style href="https://github.com/AlanDecode/Maverick" target="_blank">Maverick & Galileo</a></span>
+                        </p>
+                        <div class="copyright">
+                            <span class="footer-addon">
+                                
+                            </span>
+                            <nav class="social-links">
+                                <ul><li><a class="no-style" title="GitHub" href="https://github.com/lishiyuwhu" target="_blank"><i class="gi gi-github"></i>GitHub</a></li></ul>
+                            </nav>
+                        </div>
+                    </section>
+                    <script>
+                        var site_build_date = "2018-3-28T16:16+08:00"
+                    </script>
+                    <script src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/galileo-dc4baa7cf4.js"></script>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!--katex-->
+    <script defer src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/katex.min.js"></script>
+    <script>
+    mathOpts = {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+        ]
+    };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/auto-render.min.js" onload="renderMathInElement(document.body, mathOpts);"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/ExSearch/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/ExSearch/ExSearch-493cb9cd89.js"></script>
+
+    
+    </body>
+</html>

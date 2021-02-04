@@ -1,0 +1,353 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Plams,blog" />
+    <meta name="generator" content="Maverick 1.1" />
+    <meta name="template" content="Galileo" />
+    <link rel="alternate" type="application/rss+xml" title="Plams的个人博客 &raquo; RSS 2.0" href="/feed/index.xml" />
+    <link rel="alternate" type="application/atom+xml" title="Plams的个人博客 &raquo; ATOM 1.0" href="/feed/atom/index.xml" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/galileo-3f4dcc35c9.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/ExSearch/ExSearch-182e5a8868.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/katex.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700&display=swap">
+    <script>
+        var ExSearchConfig = {
+            root: "",
+            api: "https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/35ec923c9af3f9bfe45a2a09defd89ab.json"
+        }
+    </script>
+    
+<title>TFrecords使用, 数据集制作相关总结 - Plams的个人博客</title>
+<meta name="author" content="" />
+<meta name="description" content="在TensorFlow中以輸入管線的方式從檔案讀取資料時，流程通常包含以下幾個步驟：" />
+<meta property="og:title" content="TFrecords使用, 数据集制作相关总结 - Plams的个人博客" />
+<meta property="og:description" content="在TensorFlow中以輸入管線的方式從檔案讀取資料時，流程通常包含以下幾個步驟：" />
+<meta property="og:site_name" content="Plams的个人博客" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/archives/TFrecords使用, 数据集制作相关总结/" />
+<meta property="og:image" content="" />
+<meta property="article:published_time" content="2017-11-30T09:15:00-00.00" />
+<meta name="twitter:title" content="TFrecords使用, 数据集制作相关总结 - Plams的个人博客" />
+<meta name="twitter:description" content="在TensorFlow中以輸入管線的方式從檔案讀取資料時，流程通常包含以下幾個步驟：" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:image" content="" />
+
+
+    
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+
+    </head>
+    
+    <body>
+        
+        <div class="container">
+            <header id="ga-header">
+                <div first>
+                    <aside id="ga-brand">
+                        <h1 class="brand"><a class="no-style" href="/">Plams的个人博客</a></h1>
+                        <p>Destination Determination Deliberation</p>
+                    </aside>
+                </div>
+                <div second id="ga-nav">
+                    <nav class="navs">
+                        <ul><li><a class="ga-highlight" href="/" target="_self">首页</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/archives/" target="_self">归档</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/about/" target="_self">关于</a></li><span class="separator">·</span><li><a href="#" target="_self" class="search-form-input ga-highlight">搜索</a></li></ul>
+                    </nav>
+                </div>
+            </header>
+            <div class="wrapper">
+                
+<main>    
+    <section class="ga-section ga-content">
+        <article class="yue">
+            <h1 class="ga-post_title">TFrecords使用, 数据集制作相关总结</h1>
+            <span class="ga-post_meta ga-mono">
+                <span></span>
+                <time>
+                    2017-11-30
+                </time>
+                
+                in <a no-style class="category" href="/category/Default/">
+                    Default
+                </a>
+                
+                
+            </span>
+            <div class="ga-content_body">
+                <blockquote><p>在TensorFlow中以輸入管線的方式從檔案讀取資料時，流程通常包含以下幾個步驟：</p>
+<ul>
+<li>提供檔案名稱。</li>
+<li>打散檔案名稱。（可省略）</li>
+<li>設定 epoch 限制。（可省略）</li>
+<li>建立檔案名稱佇列（filename queue）。</li>
+<li>根據檔案格式，建立檔案讀取器。</li>
+<li>根據資料格式，建立資料解析器。</li>
+<li>資料前處理。（可省略）</li>
+<li>建立資料佇列。</li>
+</ul>
+</blockquote>
+<h1>先期准备和转换TFrecords格式</h1>
+<!-- more -->
+
+<div class="highlight"><pre><span></span><span class="ch">#! /usr/bin/python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># @Time    : 2017/12/12 20:08</span>
+<span class="c1"># @Author  : Shiyu Li</span>
+<span class="c1"># @Software: PyCharm</span>
+<span class="c1">#</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+
+<span class="k">def</span> <span class="nf">makefile</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">typename</span><span class="p">,</span> <span class="n">NUM</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    :param root: target file of &#39;/train&#39; and &#39;/test&#39;</span>
+<span class="sd">    :param data: the data file you want to corp</span>
+<span class="sd">    :param typename: file name in &#39;/train&#39; and &#39;/test&#39;</span>
+<span class="sd">    :param NUM: the num of data in &#39;/train&#39;</span>
+<span class="sd">    :return: None</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">root</span> <span class="o">+</span> <span class="s1">&#39;/train&#39;</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">root</span> <span class="o">+</span> <span class="s1">&#39;/test&#39;</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="ne">BaseException</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=================================================&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There exist &#39;/train&#39; &#39;/test&#39;, delete first please.&quot;</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">root</span> <span class="o">+</span> <span class="s1">&#39;/train/&#39;</span> <span class="o">+</span> <span class="n">typename</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">root</span> <span class="o">+</span> <span class="s1">&#39;/test/&#39;</span> <span class="o">+</span> <span class="n">typename</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">BaseException</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There exist &#39;/</span><span class="si">%s</span><span class="s2">&#39;, delete first please.&quot;</span> <span class="o">%</span> <span class="n">typename</span><span class="p">)</span>
+
+
+    <span class="n">name_list</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">name_list</span><span class="p">)</span>
+
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">name_list</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">count</span> <span class="o">&lt;</span> <span class="n">NUM</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;train data :</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+            <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">name</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span> <span class="o">+</span> <span class="s1">&#39;/train/&#39;</span> <span class="o">+</span> <span class="n">typename</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">typename</span> <span class="o">+</span> <span class="n">name</span><span class="p">))</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;test data :</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+            <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">name</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span> <span class="o">+</span> <span class="s1">&#39;/test/&#39;</span><span class="o">+</span> <span class="n">typename</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">typename</span> <span class="o">+</span> <span class="n">name</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    file structure</span>
+<span class="sd">    -img-to-TR.py</span>
+<span class="sd">    -train</span>
+<span class="sd">      -cover</span>
+<span class="sd">        -1.pgm</span>
+<span class="sd">        -3.pgm</span>
+<span class="sd">      -stego</span>
+<span class="sd">        -2.pgm</span>
+<span class="sd">        -6.pgm</span>
+<span class="sd">    -test</span>
+<span class="sd">      -cover</span>
+<span class="sd">        -5.pgm</span>
+<span class="sd">        -8.pgm</span>
+<span class="sd">      -stego</span>
+<span class="sd">        -213.pgm</span>
+<span class="sd">        -223.pgm</span>
+
+<span class="sd">    :param filename:</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">cwd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+    <span class="n">root</span> <span class="o">=</span> <span class="n">cwd</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">filename</span> <span class="o">+</span> <span class="s1">&#39;BossBase-1.01-hugo-alpha=0.4.tfrecords&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">writer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">python_io</span><span class="o">.</span><span class="n">TFRecordWriter</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;cover&#39;</span><span class="p">,</span> <span class="s1">&#39;stego&#39;</span><span class="p">}</span>
+
+    <span class="c1">#for image_filename, label in zip(image_filename_list, label_list):</span>
+
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">classes</span><span class="p">):</span>
+        <span class="n">class_path</span> <span class="o">=</span> <span class="n">root</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span>
+        <span class="k">for</span> <span class="n">img_name</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">class_path</span><span class="p">):</span>
+            <span class="n">img_path</span> <span class="o">=</span> <span class="n">class_path</span> <span class="o">+</span> <span class="n">img_name</span>
+            <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">img_path</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">img_name</span><span class="p">)</span>
+
+            <span class="c1">#data = np.array(img.getdata())</span>
+            <span class="c1"># 可视化 Image.fromarray(data.reshape([512,512])).show()</span>
+
+            <span class="n">data</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span>
+            <span class="c1"># 可视化 Image.frombytes(&#39;L&#39;, [512,512], data).show()</span>
+            <span class="n">example</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Example</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Features</span><span class="p">(</span><span class="n">feature</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">int64_list</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Int64List</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="n">index</span><span class="p">])),</span>
+                <span class="s1">&#39;img_raw&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">bytes_list</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">BytesList</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="n">data</span><span class="p">]))</span>
+            <span class="p">}))</span>
+            <span class="n">writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">example</span><span class="o">.</span><span class="n">SerializeToString</span><span class="p">())</span>
+    <span class="n">writer</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+
+    <span class="c1"># cover_data = &#39;BossBase-1.01-cover&#39;</span>
+    <span class="c1"># stego_data = &#39;BossBase-1.01-hugo-alpha=0.4&#39;</span>
+    <span class="c1"># root = os.getcwd()</span>
+    <span class="c1"># makefile(root, cover_data, typename=&#39;cover&#39;, NUM=8000)</span>
+    <span class="c1"># makefile(root, stego_data, typename=&#39;stego&#39;, NUM=8000)</span>
+
+    <span class="n">encode</span><span class="p">(</span><span class="s1">&#39;train&#39;</span><span class="p">)</span>
+    <span class="n">encode</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
+</pre></div>
+<h1>读取和TFrecords中图片的解码可视化</h1>
+<div class="highlight"><pre><span></span><span class="ch">#! /usr/bin/python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># @Time    : 2017/12/12 20:08</span>
+<span class="c1"># @Author  : Shiyu Li</span>
+<span class="c1"># @Software: PyCharm</span>
+
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+
+
+<span class="k">def</span> <span class="nf">read_and_decode</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Return tensor to read from TFRecord &quot;&quot;&quot;</span>
+    <span class="n">filename_queue</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">string_input_producer</span><span class="p">([</span><span class="n">filename</span><span class="p">])</span>
+    <span class="n">reader</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">TFRecordReader</span><span class="p">()</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">serialized_example</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">filename_queue</span><span class="p">)</span>
+    <span class="n">features</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">parse_single_example</span><span class="p">(</span><span class="n">serialized_example</span><span class="p">,</span>
+                                       <span class="n">features</span><span class="o">=</span><span class="p">{</span>
+                                           <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">FixedLenFeature</span><span class="p">([],</span> <span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">),</span>
+                                           <span class="s1">&#39;img_raw&#39;</span> <span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">FixedLenFeature</span><span class="p">([],</span> <span class="n">tf</span><span class="o">.</span><span class="n">string</span><span class="p">),</span>
+                                       <span class="p">})</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">decode_raw</span><span class="p">(</span><span class="n">features</span><span class="p">[</span><span class="s1">&#39;img_raw&#39;</span><span class="p">],</span> <span class="n">tf</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">[</span><span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="c1"># img = tf.cast(img, tf.float32) # if you want to use tfrecords as input.</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">features</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">],</span> <span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">img</span><span class="p">,</span> <span class="n">label</span>
+
+<span class="c1"># visualize data</span>
+<span class="n">img</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">read_and_decode</span><span class="p">(</span><span class="s2">&quot;testBossBase-1.01-hugo-alpha=0.4.tfrecords&quot;</span><span class="p">)</span>
+<span class="n">img_batch</span><span class="p">,</span> <span class="n">label_batch</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">shuffle_batch</span><span class="p">([</span><span class="n">img</span><span class="p">,</span> <span class="n">label</span><span class="p">],</span>
+                                                <span class="n">batch_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                                                <span class="n">capacity</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span>
+                                                <span class="n">min_after_dequeue</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
+                                                <span class="n">num_threads</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;img_batch   : </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">img_batch</span><span class="o">.</span><span class="n">_shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;label_batch : </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">label_batch</span><span class="o">.</span><span class="n">_shape</span><span class="p">)</span>
+
+<span class="n">init</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">global_variables_initializer</span><span class="p">()</span>
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+    <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">init</span><span class="p">)</span>
+    <span class="n">coord</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Coordinator</span><span class="p">()</span>
+    <span class="n">threads</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">start_queue_runners</span><span class="p">(</span><span class="n">sess</span><span class="o">=</span><span class="n">sess</span><span class="p">,</span> <span class="n">coord</span><span class="o">=</span><span class="n">coord</span><span class="p">)</span>
+
+    <span class="n">val</span><span class="p">,</span> <span class="n">l</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">img_batch</span><span class="p">,</span> <span class="n">label_batch</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
+    <span class="n">show_img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,)))</span>
+    <span class="n">show_img</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="n">coord</span><span class="o">.</span><span class="n">request_stop</span><span class="p">()</span>
+    <span class="n">coord</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">threads</span><span class="p">)</span>
+    <span class="n">sess</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+<h2>参考文章</h2>
+<p><a href="http://ycszen.github.io/2016/08/17/TensorFlow%E9%AB%98%E6%95%88%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE/">http://ycszen.github.io/2016/08/17/TensorFlow%E9%AB%98%E6%95%88%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE/</a></p>
+<p><a href="http://blog.csdn.net/u012759136/article/details/52232266">http://blog.csdn.net/u012759136/article/details/52232266</a></p>
+<p><a href="http://blog.csdn.net/tengxing007/article/details/56847828">http://blog.csdn.net/tengxing007/article/details/56847828</a></p>
+<p><a href="http://blog.csdn.net/tengxing007/article/details/54428262">http://blog.csdn.net/tengxing007/article/details/54428262</a></p>
+<p><a href="http://www.shellsec.com/news/33788.html">http://www.shellsec.com/news/33788.html</a></p>
+<p><a href="https://github.com/ycszen/TensorFlowLaboratory/tree/master/mcnn">https://github.com/ycszen/TensorFlowLaboratory/tree/master/mcnn</a></p>
+<p><a href="https://blog.gtwang.org/programming/tensorflow-input-pipeline-notes/">https://blog.gtwang.org/programming/tensorflow-input-pipeline-notes/</a></p>
+
+            </div>
+        </article>
+        <div id="ga-tags">
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/tag/M/">#M</a>
+    </span>
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/tag/L/">#L</a>
+    </span>
+    
+</div>
+    </section>
+
+    
+<section id="ga-content_pager">
+
+    <div class="next">
+        <a class="ga-highlight" href="/archives/从LeNet到DenseNet/">从LeNet到DenseNet</a>
+        <p class="yue">网络模型</p>
+    </div>
+
+
+    <div class="prev">
+        <a class="ga-highlight" href="/archives/ML Lecture 19 Transfer Learning/">ML Lecture 19 Transfer Learning</a>
+        <p class="yue">什么是迁移学习? Data not directly related to the task considered</p>
+    </div>
+
+</section>
+
+
+    
+
+</main>
+
+                <footer class="ga-mono" id="ga-footer">
+                    <section>
+                        <span id="ga-uptime"></span>
+                        <span class="brand">Plams的个人博客</span>
+                    </section>
+                    <section>
+                        <p class="copyright">
+                            <span>Copyright © 2021 Plams</span>
+                            <span>Powered by <a no-style href="https://github.com/AlanDecode/Maverick" target="_blank">Maverick & Galileo</a></span>
+                        </p>
+                        <div class="copyright">
+                            <span class="footer-addon">
+                                
+                            </span>
+                            <nav class="social-links">
+                                <ul><li><a class="no-style" title="GitHub" href="https://github.com/lishiyuwhu" target="_blank"><i class="gi gi-github"></i>GitHub</a></li></ul>
+                            </nav>
+                        </div>
+                    </section>
+                    <script>
+                        var site_build_date = "2018-3-28T16:16+08:00"
+                    </script>
+                    <script src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/galileo-dc4baa7cf4.js"></script>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!--katex-->
+    <script defer src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/katex.min.js"></script>
+    <script>
+    mathOpts = {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+        ]
+    };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/auto-render.min.js" onload="renderMathInElement(document.body, mathOpts);"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/ExSearch/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/ExSearch/ExSearch-493cb9cd89.js"></script>
+
+    
+    </body>
+</html>

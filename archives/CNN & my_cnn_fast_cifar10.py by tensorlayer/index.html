@@ -1,0 +1,424 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Plams,blog" />
+    <meta name="generator" content="Maverick 1.1" />
+    <meta name="template" content="Galileo" />
+    <link rel="alternate" type="application/rss+xml" title="Plams的个人博客 &raquo; RSS 2.0" href="/feed/index.xml" />
+    <link rel="alternate" type="application/atom+xml" title="Plams的个人博客 &raquo; ATOM 1.0" href="/feed/atom/index.xml" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/galileo-3f4dcc35c9.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/ExSearch/ExSearch-182e5a8868.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/katex.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700&display=swap">
+    <script>
+        var ExSearchConfig = {
+            root: "",
+            api: "https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/35ec923c9af3f9bfe45a2a09defd89ab.json"
+        }
+    </script>
+    
+<title>CNN & my_cnn_fast_cifar10.py by tensorlayer - Plams的个人博客</title>
+<meta name="author" content="" />
+<meta name="description" content="Convolutional Neural Network" />
+<meta property="og:title" content="CNN & my_cnn_fast_cifar10.py by tensorlayer - Plams的个人博客" />
+<meta property="og:description" content="Convolutional Neural Network" />
+<meta property="og:site_name" content="Plams的个人博客" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/archives/CNN & my_cnn_fast_cifar10.py by tensorlayer/" />
+<meta property="og:image" content="" />
+<meta property="article:published_time" content="2017-07-30T17:04:10-00.00" />
+<meta name="twitter:title" content="CNN & my_cnn_fast_cifar10.py by tensorlayer - Plams的个人博客" />
+<meta name="twitter:description" content="Convolutional Neural Network" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:image" content="" />
+
+
+    
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+
+    </head>
+    
+    <body>
+        
+        <div class="container">
+            <header id="ga-header">
+                <div first>
+                    <aside id="ga-brand">
+                        <h1 class="brand"><a class="no-style" href="/">Plams的个人博客</a></h1>
+                        <p>Destination Determination Deliberation</p>
+                    </aside>
+                </div>
+                <div second id="ga-nav">
+                    <nav class="navs">
+                        <ul><li><a class="ga-highlight" href="/" target="_self">首页</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/archives/" target="_self">归档</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/about/" target="_self">关于</a></li><span class="separator">·</span><li><a href="#" target="_self" class="search-form-input ga-highlight">搜索</a></li></ul>
+                    </nav>
+                </div>
+            </header>
+            <div class="wrapper">
+                
+<main>    
+    <section class="ga-section ga-content">
+        <article class="yue">
+            <h1 class="ga-post_title">CNN & my_cnn_fast_cifar10.py by tensorlayer</h1>
+            <span class="ga-post_meta ga-mono">
+                <span></span>
+                <time>
+                    2017-07-30
+                </time>
+                
+                in <a no-style class="category" href="/category/Default/">
+                    Default
+                </a>
+                
+                
+            </span>
+            <div class="ga-content_body">
+                <h2>Convolutional Neural Network</h2>
+<p>CNN是一个很好的范例, 它告诉了我们, NN的架构可以由我们自己设计并且表现得很好</p>
+<p>在你想用一个feature去比对图片的时候, 有三个重点:</p>
+<ul>
+<li>pattern</li>
+<li>location</li>
+<li>subsampling</li>
+</ul>
+<h2>基本架构</h2>
+<p>image -&gt; convolution -&gt; pooling-&gt; Flatten -&gt; Fully Connected Feedforward Network -&gt; softmax -&gt;output</p>
+<p>其中, 卷积层解决了pattern和location问题, 池化层解决了subsapling问题</p>
+<!-- more -->
+
+<h3>conv</h3>
+<p>假设一个6*6*1的image扔到这个CNN中, 第一个conv, 取一个3*3的filter(kernel or neuron)与image中相同大小快依次做内积, 每次移动1个pix(stride=1), 于是得到了一个4*4的image(不做padding), 假设我们有n个filter, 那么通过这个conv就得到了一个 4*4*n的Feature Map</p>
+<p>如果是个RGB图像, 即6*6*3, 那么我们的filter也要是3*3*3的, 每个slice对应image的一个channel.</p>
+<p>事实上,  我们仔细分析每个filter做了什么的话, 如果把一个filt看作一个neuron, filter内积的特性, 做到了两件事:</p>
+<ul>
+<li>parameter sharing</li>
+<li>drop connect</li>
+</ul>
+<p><figure  size-undefined><img width="-1" height="-1" src="http://otivusbsc.bkt.clouddn.com/752e7d7d-6469-42b3-9e58-5d5ae31d005b" /><figcaption> </figcaption></figure></p>
+<p>顺带一说'卷积'这个概念. 很多人都说这个怎么就是卷积了, 不就是简单的一个inner production吗?
+怎么看也不是那个积分u(t)h(a-t)形式. 其实, 要是从离散的角度去看卷积运算,</p>
+<blockquote><p>与其理解成翻转，不如理解成延迟后叠加。</p>
+</blockquote>
+<p>这句话是我觉得说的非常好的一个揭示卷积本质的话. 再去看看filter的行为就很明了了.</p>
+<h3>padding</h3>
+<p>根据tensorflow中的conv2d函数，我们先定义几个基本符号</p>
+<p>1、输入矩阵 W×W，这里只考虑输入宽高相等的情况，如果不相等，推导方法一样，不多解释。</p>
+<p>2、filter矩阵 F×F，卷积核</p>
+<p>3、stride值 S，步长</p>
+<p>4、输出宽高为 new_height、new_width</p>
+<p>当然还有其他的一些具体的参数，这里就不再说明了。</p>
+<p>我们知道，padding的方式在tensorflow里分两种，一种是VALID，一种是SAME，下面分别介绍这两种方式的实际操作方法。</p>
+<p>1、如果padding = ‘VALID’</p>
+<p>new_height = new_width = (W – F + 1) / S （结果向上取整）
+也就是说，conv2d的VALID方式不会在原有输入的基础上添加新的像素（假定我们的输入是图片数据，因为只有图片才有像素），输出矩阵的大小直接按照公式计算即可。</p>
+<p>2、如果padding = ‘SAME’</p>
+<p>new_height = new_width = W / S （结果向上取整）</p>
+<p>padding这段来自于</p>
+<blockquote><p>作者：Traphix
+链接：<a href="http://www.jianshu.com/p/05c4f1621c7e">http://www.jianshu.com/p/05c4f1621c7e</a>
+來源：简书
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+</blockquote>
+<h3>pooling</h3>
+<p>很多时候我们都是maxpooling, 其实averagepooling一样用的很多, 例如在cifar-10的cnn设计中, avgpooling被采用了在后两cnov层后
+<figure  size-undefined><img width="-1" height="-1" src="http://otivusbsc.bkt.clouddn.com/5a95606c-3f20-49c5-978f-cc23661c3764" /><figcaption> </figcaption></figure></p>
+<p>取kernel=(2,2)的maxpooling的话
+6*6 -&gt; conv -&gt; maxpooling -&gt; 2*2*n</p>
+<h3>flatten</h3>
+<p>直接把经过pooling得到的2*2*n拉直为一个向量, 每个slice头尾相接, 假设n=16, 这时我们就有了一个64dim的vector, 再扔进一个MLP, 输出一个10dim(假设作在mnist上), 最后接上一个softmax, 就得出分类结果</p>
+<h1>my_cnn_fast_cifar10.py</h1>
+<p>下面是我按照pooling那里的cifar-10 fast model写的代码, backend是tensorflow, 框架tensorlayer.</p>
+<div class="highlight"><pre><span></span><span class="ch">#! /usr/bin/python</span>
+<span class="c1"># -*- coding: utf8 -*-</span>
+
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">tensorlayer</span> <span class="k">as</span> <span class="nn">tl</span>
+<span class="kn">import</span> <span class="nn">tensorlayer.layers</span> <span class="k">as</span> <span class="nn">tll</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">io</span>
+
+<span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">InteractiveSession</span><span class="p">()</span>
+
+<span class="c1">#train param</span>
+<span class="n">n_epoch</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.0001</span>
+<span class="n">print_freq</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">128</span>
+
+<span class="c1">#load cifar10</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">load_cifar10_dataset</span><span class="p">(</span>
+                                    <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">plotable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1">#InitW(Gaussian with zero mean)</span>
+<span class="n">W_init1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">truncated_normal_initializer</span><span class="p">(</span><span class="n">stddev</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">)</span>
+<span class="n">W_init2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">truncated_normal_initializer</span><span class="p">(</span><span class="n">stddev</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+<span class="n">W_init3</span> <span class="o">=</span> <span class="n">W_init2</span>
+<span class="n">W_init4</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">truncated_normal_initializer</span><span class="p">(</span><span class="n">stddev</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">W_init5</span> <span class="o">=</span> <span class="n">W_init4</span>
+<span class="n">b_init4</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">truncated_normal_initializer</span><span class="p">(</span><span class="n">stddev</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">b_init5</span> <span class="o">=</span> <span class="n">b_init4</span>
+
+<span class="c1">#placeholder</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">y_</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;y_&#39;</span><span class="p">)</span>
+
+<span class="c1">#model</span>
+<span class="n">nn</span> <span class="o">=</span> <span class="n">tll</span><span class="o">.</span><span class="n">InputLayer</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Input1&#39;</span><span class="p">)</span>
+<span class="n">nn</span> <span class="o">=</span> <span class="n">tll</span><span class="o">.</span><span class="n">Conv2dLayer</span><span class="p">(</span><span class="n">nn</span><span class="p">,</span> <span class="n">act</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">32</span><span class="p">],</span> 
+        <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;SAME&#39;</span><span class="p">,</span> <span class="n">W_init</span><span class="o">=</span><span class="n">W_init1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;cnn1&#39;</span><span class="p">)</span>
+<span class="c1">#output : (batchsize, 32, 32, 32)</span>
+<span class="n">nn</span> <span class="o">=</span> <span class="n">tll</span><span class="o">.</span><span class="n">PoolLayer</span><span class="p">(</span><span class="n">nn</span><span class="p">,</span> <span class="n">ksize</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> 
+        <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;SAME&#39;</span><span class="p">,</span> <span class="n">pool</span><span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">max_pool</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;pool1_max&#39;</span><span class="p">)</span>
+<span class="c1">#output : (batchsize, 16, 16, 32)</span>
+<span class="n">nn</span> <span class="o">=</span> <span class="n">tll</span><span class="o">.</span><span class="n">Conv2dLayer</span><span class="p">(</span><span class="n">nn</span><span class="p">,</span> <span class="n">act</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">],</span> 
+        <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;SAME&#39;</span><span class="p">,</span> <span class="n">W_init</span><span class="o">=</span><span class="n">W_init2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;cnn2&#39;</span><span class="p">)</span>
+<span class="c1">#output : (batchsize, 16, 16, 32)</span>
+<span class="n">nn</span> <span class="o">=</span> <span class="n">tll</span><span class="o">.</span><span class="n">PoolLayer</span><span class="p">(</span><span class="n">nn</span><span class="p">,</span> <span class="n">ksize</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> 
+        <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;SAME&#39;</span><span class="p">,</span> <span class="n">pool</span><span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">avg_pool</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;pool2_avg&#39;</span><span class="p">)</span>
+<span class="c1">#output : (batchsize, 8, 8, 32)</span>
+<span class="n">nn</span> <span class="o">=</span> <span class="n">tll</span><span class="o">.</span><span class="n">Conv2dLayer</span><span class="p">(</span><span class="n">nn</span><span class="p">,</span> <span class="n">act</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">],</span> 
+        <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;SAME&#39;</span><span class="p">,</span> <span class="n">W_init</span><span class="o">=</span><span class="n">W_init3</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;cnn3&#39;</span><span class="p">)</span>
+<span class="c1">#output : (batchsize, 8, 8, 64)</span>
+<span class="n">nn</span> <span class="o">=</span> <span class="n">tll</span><span class="o">.</span><span class="n">PoolLayer</span><span class="p">(</span><span class="n">nn</span><span class="p">,</span> <span class="n">ksize</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> 
+        <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;SAME&#39;</span><span class="p">,</span> <span class="n">pool</span><span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">avg_pool</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;pool3_avg&#39;</span><span class="p">)</span>
+<span class="c1">#output : (batchsize, 4, 4, 64)</span>
+<span class="n">nn</span> <span class="o">=</span> <span class="n">tll</span><span class="o">.</span><span class="n">FlattenLayer</span><span class="p">(</span><span class="n">nn</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Flattenlayer&#39;</span><span class="p">)</span>
+<span class="n">nn</span> <span class="o">=</span> <span class="n">tll</span><span class="o">.</span><span class="n">DenseLayer</span><span class="p">(</span><span class="n">nn</span><span class="p">,</span> <span class="n">n_units</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">act</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">,</span> 
+        <span class="n">W_init</span><span class="o">=</span><span class="n">W_init4</span><span class="p">,</span> <span class="n">b_init</span><span class="o">=</span><span class="n">b_init4</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;relu1&#39;</span><span class="p">)</span>
+<span class="n">nn</span> <span class="o">=</span> <span class="n">tll</span><span class="o">.</span><span class="n">DenseLayer</span><span class="p">(</span><span class="n">nn</span><span class="p">,</span> <span class="n">n_units</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">act</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">identity</span><span class="p">,</span> 
+        <span class="n">W_init</span><span class="o">=</span><span class="n">W_init5</span><span class="p">,</span> <span class="n">b_init</span><span class="o">=</span><span class="n">b_init5</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;output1&#39;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">outputs</span>
+
+<span class="c1">#cost</span>
+<span class="n">ce</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">cost</span><span class="o">.</span><span class="n">cross_entropy</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;cost_cross_entropy&#39;</span><span class="p">)</span>
+<span class="n">L2</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">tl</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">get_variables_with_name</span><span class="p">(</span><span class="s1">&#39;relu/W&#39;</span><span class="p">,</span> <span class="n">train_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">printable</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">L2</span> <span class="o">+=</span> <span class="n">tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">l2_regularizer</span><span class="p">(</span><span class="mf">0.004</span><span class="p">)(</span><span class="n">p</span><span class="p">)</span>
+<span class="n">cost</span> <span class="o">=</span> <span class="n">ce</span> <span class="o">+</span> <span class="n">L2</span>
+
+<span class="c1">#acc</span>
+<span class="n">correct_prediction</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y_</span><span class="p">)</span>
+<span class="n">acc</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">correct_prediction</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span>
+
+<span class="c1">#train_op</span>
+<span class="n">train_params</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">all_params</span>
+<span class="n">train_op</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">AdamOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">,</span> <span class="n">beta1</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">beta2</span><span class="o">=</span><span class="mf">0.999</span><span class="p">,</span>
+    <span class="n">epsilon</span><span class="o">=</span><span class="mf">1e-08</span><span class="p">,</span> <span class="n">use_locking</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">var_list</span><span class="o">=</span><span class="n">train_params</span><span class="p">)</span>
+
+<span class="n">tl</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">initialize_global_variables</span><span class="p">(</span><span class="n">sess</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;****&#39;</span><span class="p">)</span>
+<span class="n">nn</span><span class="o">.</span><span class="n">print_params</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;****&#39;</span><span class="p">)</span>
+<span class="n">nn</span><span class="o">.</span><span class="n">print_layers</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;****&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;    learning_rate: </span><span class="si">%f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">learning_rate</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;    batch_size: </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">batch_size</span><span class="p">)</span>
+</pre></div>
+<p>搭好了模型, 然后发现忘了写BN层了, 🤣明个再说
+说个点
+<figure  size-undefined><img width="-1" height="-1" src="http://otivusbsc.bkt.clouddn.com/5a95606c-3f20-49c5-978f-cc23661c3764" /><figcaption> </figcaption></figure>
+这里面, 卷积层参数, 给了kernel也就是filter的大小5/*5, 但没给strides, 却给的padding=2. 见过padding='SAME' or 'VAILD', 这个数字是个啥.</p>
+<p>研究了一下, 应该就是默认padding='SAME' , 然后看这个图
+<figure  size-undefined><img width="-1" height="-1" src="http://otivusbsc.bkt.clouddn.com/a56f0c24-ab26-406d-803f-1fbcea7377f9" /></figure></p>
+<p>padding=2 就是最外层套2个pixel, 那么strides=1就很显然, 不然取2干什么.</p>
+<hr>
+<p>走之前改了下初步, 加了个Bathchnormallayer</p>
+<div class="highlight"><pre><span></span><span class="ch">#! /usr/bin/python</span>
+<span class="c1"># -*- coding: utf8 -*-</span>
+
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">tensorlayer</span> <span class="k">as</span> <span class="nn">tl</span>
+<span class="kn">import</span> <span class="nn">tensorlayer.layers</span> <span class="k">as</span> <span class="nn">tll</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">io</span>
+
+<span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">InteractiveSession</span><span class="p">()</span>
+
+<span class="c1">#load cifar10</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">load_cifar10_dataset</span><span class="p">(</span>
+                                    <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">plotable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">fast_model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_</span><span class="p">,</span> <span class="n">reuse</span><span class="p">,</span> <span class="n">is_train</span><span class="p">):</span>
+    <span class="c1">#InitW(Gaussian with zero mean)</span>
+    <span class="n">W_init1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">truncated_normal_initializer</span><span class="p">(</span><span class="n">stddev</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">)</span>
+    <span class="n">W_init2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">truncated_normal_initializer</span><span class="p">(</span><span class="n">stddev</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+    <span class="n">W_init3</span> <span class="o">=</span> <span class="n">W_init2</span>
+    <span class="n">W_init4</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">truncated_normal_initializer</span><span class="p">(</span><span class="n">stddev</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">W_init5</span> <span class="o">=</span> <span class="n">W_init4</span>
+    <span class="n">b_init4</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">truncated_normal_initializer</span><span class="p">(</span><span class="n">stddev</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">b_init5</span> <span class="o">=</span> <span class="n">b_init4</span>
+
+    <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="n">reuse</span><span class="o">=</span><span class="n">reuse</span><span class="p">):</span>
+        <span class="n">tl</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">set_name_reuse</span><span class="p">(</span><span class="n">reuse</span><span class="p">)</span>
+        <span class="c1">#model</span>
+        <span class="n">nn</span> <span class="o">=</span> <span class="n">tll</span><span class="o">.</span><span class="n">InputLayer</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Input1&#39;</span><span class="p">)</span>
+        <span class="n">nn</span> <span class="o">=</span> <span class="n">tll</span><span class="o">.</span><span class="n">Conv2dLayer</span><span class="p">(</span><span class="n">nn</span><span class="p">,</span> <span class="n">act</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">32</span><span class="p">],</span> 
+                <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;SAME&#39;</span><span class="p">,</span> <span class="n">W_init</span><span class="o">=</span><span class="n">W_init1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;cnn1&#39;</span><span class="p">)</span>
+        <span class="c1">#output : (batchsize, 32, 32, 32)</span>
+        <span class="n">nn</span> <span class="o">=</span> <span class="n">tll</span><span class="o">.</span><span class="n">BatchNormLayer</span><span class="p">(</span><span class="n">nn</span><span class="p">,</span> <span class="n">is_train</span><span class="p">,</span> <span class="n">act</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;batch1&#39;</span><span class="p">)</span>
+        <span class="n">nn</span> <span class="o">=</span> <span class="n">tll</span><span class="o">.</span><span class="n">PoolLayer</span><span class="p">(</span><span class="n">nn</span><span class="p">,</span> <span class="n">ksize</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> 
+                <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;SAME&#39;</span><span class="p">,</span> <span class="n">pool</span><span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">max_pool</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;pool1_max&#39;</span><span class="p">)</span>
+        <span class="c1">#output : (batchsize, 16, 16, 32)</span>
+        <span class="n">nn</span> <span class="o">=</span> <span class="n">tll</span><span class="o">.</span><span class="n">Conv2dLayer</span><span class="p">(</span><span class="n">nn</span><span class="p">,</span> <span class="n">act</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">],</span> 
+                <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;SAME&#39;</span><span class="p">,</span> <span class="n">W_init</span><span class="o">=</span><span class="n">W_init2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;cnn2&#39;</span><span class="p">)</span>
+        <span class="c1">#output : (batchsize, 16, 16, 32)</span>
+        <span class="n">nn</span> <span class="o">=</span> <span class="n">tll</span><span class="o">.</span><span class="n">BatchNormLayer</span><span class="p">(</span><span class="n">nn</span><span class="p">,</span> <span class="n">is_train</span><span class="p">,</span> <span class="n">act</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;batch2&#39;</span><span class="p">)</span>
+        <span class="n">nn</span> <span class="o">=</span> <span class="n">tll</span><span class="o">.</span><span class="n">PoolLayer</span><span class="p">(</span><span class="n">nn</span><span class="p">,</span> <span class="n">ksize</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> 
+                <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;SAME&#39;</span><span class="p">,</span> <span class="n">pool</span><span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">avg_pool</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;pool2_avg&#39;</span><span class="p">)</span>
+        <span class="c1">#output : (batchsize, 8, 8, 32)</span>
+        <span class="n">nn</span> <span class="o">=</span> <span class="n">tll</span><span class="o">.</span><span class="n">Conv2dLayer</span><span class="p">(</span><span class="n">nn</span><span class="p">,</span> <span class="n">act</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">],</span> 
+                <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;SAME&#39;</span><span class="p">,</span> <span class="n">W_init</span><span class="o">=</span><span class="n">W_init3</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;cnn3&#39;</span><span class="p">)</span>
+        <span class="c1">#output : (batchsize, 8, 8, 64)</span>
+        <span class="n">nn</span> <span class="o">=</span> <span class="n">tll</span><span class="o">.</span><span class="n">BatchNormLayer</span><span class="p">(</span><span class="n">nn</span><span class="p">,</span> <span class="n">is_train</span><span class="p">,</span> <span class="n">act</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;batch3&#39;</span><span class="p">)</span>
+        <span class="n">nn</span> <span class="o">=</span> <span class="n">tll</span><span class="o">.</span><span class="n">PoolLayer</span><span class="p">(</span><span class="n">nn</span><span class="p">,</span> <span class="n">ksize</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> 
+                <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;SAME&#39;</span><span class="p">,</span> <span class="n">pool</span><span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">avg_pool</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;pool3_avg&#39;</span><span class="p">)</span>
+        <span class="c1">#output : (batchsize, 4, 4, 64)</span>
+        <span class="n">nn</span> <span class="o">=</span> <span class="n">tll</span><span class="o">.</span><span class="n">FlattenLayer</span><span class="p">(</span><span class="n">nn</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Flattenlayer&#39;</span><span class="p">)</span>
+        <span class="n">nn</span> <span class="o">=</span> <span class="n">tll</span><span class="o">.</span><span class="n">DenseLayer</span><span class="p">(</span><span class="n">nn</span><span class="p">,</span> <span class="n">n_units</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">act</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">,</span> 
+                <span class="n">W_init</span><span class="o">=</span><span class="n">W_init4</span><span class="p">,</span> <span class="n">b_init</span><span class="o">=</span><span class="n">b_init4</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;relu1&#39;</span><span class="p">)</span>
+        <span class="n">nn</span> <span class="o">=</span> <span class="n">tll</span><span class="o">.</span><span class="n">DenseLayer</span><span class="p">(</span><span class="n">nn</span><span class="p">,</span> <span class="n">n_units</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">act</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">identity</span><span class="p">,</span> 
+                <span class="n">W_init</span><span class="o">=</span><span class="n">W_init5</span><span class="p">,</span> <span class="n">b_init</span><span class="o">=</span><span class="n">b_init5</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;output1&#39;</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">outputs</span>
+
+        <span class="c1">#cost</span>
+        <span class="n">ce</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">cost</span><span class="o">.</span><span class="n">cross_entropy</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;cost_cross_entropy&#39;</span><span class="p">)</span>
+        <span class="n">L2</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">tl</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">get_variables_with_name</span><span class="p">(</span><span class="s1">&#39;relu/W&#39;</span><span class="p">,</span> <span class="n">train_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">printable</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+           <span class="n">L2</span> <span class="o">+=</span> <span class="n">tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">l2_regularizer</span><span class="p">(</span><span class="mf">0.004</span><span class="p">)(</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">cost</span> <span class="o">=</span> <span class="n">ce</span> <span class="o">+</span> <span class="n">L2</span>
+
+        <span class="c1">#acc</span>
+        <span class="n">correct_prediction</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y_</span><span class="p">)</span>
+        <span class="n">acc</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">correct_prediction</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">nn</span><span class="p">,</span> <span class="n">cost</span><span class="p">,</span> <span class="n">acc</span>
+
+
+<span class="c1">#train param</span>
+<span class="n">n_epoch</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.0001</span>
+<span class="n">print_freq</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">128</span>
+
+<span class="c1">#placeholder</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">y_</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;y_&#39;</span><span class="p">)</span>
+
+<span class="n">nn</span><span class="p">,</span> <span class="n">cost</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">fast_model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">is_train</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">cost_test</span><span class="p">,</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">fast_model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">is_train</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+
+<span class="c1">#train_op</span>
+<span class="n">train_params</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">all_params</span>
+<span class="n">train_op</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">AdamOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">,</span> <span class="n">beta1</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">beta2</span><span class="o">=</span><span class="mf">0.999</span><span class="p">,</span>
+    <span class="n">epsilon</span><span class="o">=</span><span class="mf">1e-08</span><span class="p">,</span> <span class="n">use_locking</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">var_list</span><span class="o">=</span><span class="n">train_params</span><span class="p">)</span>
+
+<span class="n">tl</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">initialize_global_variables</span><span class="p">(</span><span class="n">sess</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;****&#39;</span><span class="p">)</span>
+<span class="n">nn</span><span class="o">.</span><span class="n">print_params</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;****&#39;</span><span class="p">)</span>
+<span class="n">nn</span><span class="o">.</span><span class="n">print_layers</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;****&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;    learning_rate: </span><span class="si">%f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">learning_rate</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;    batch_size: </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">batch_size</span><span class="p">)</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">tl.utils.fit(sess, nn, train_op, cost, X_train, y_train, x, y_,</span>
+<span class="sd">           acc=acc, batch_size=batch_size, n_epoch=n_epoch, print_freq=5,</span>
+<span class="sd">           X_val=None, y_val=None, eval_train=False,</span>
+<span class="sd">           tensorboard=True)</span>
+
+<span class="sd">tl.utils.test(sess, nn, acc, X_test, y_test, x, y_, batch_size=None, cost=cost)</span>
+
+<span class="sd">sess.close()</span>
+<span class="sd">&#39;&#39;&#39;</span>
+</pre></div>
+<p>num of params: 146090, 
+参数数量比最原始版少了一个数量级. 很迷, 是不是写错了, 怎么少了这么多. 找个时间train下试试再说</p>
+
+            </div>
+        </article>
+        <div id="ga-tags">
+    
+</div>
+    </section>
+
+    
+<section id="ga-content_pager">
+
+    <div class="next">
+        <a class="ga-highlight" href="/archives/Deep-Learning-Papers-Reading-Roadmap Notes Part 1/">Deep-Learning-Papers-Reading-Roadmap Notes Part 1</a>
+        <p class="yue">https://github.com/songrotek/Deep-Learning-Papers-Reading-Roadmap</p>
+    </div>
+
+
+    <div class="prev">
+        <a class="ga-highlight" href="/archives/为tensorflow模块在spyder添加代码补全/">为tensorflow模块在spyder添加代码补全</a>
+        <p class="yue">spyder自带的代码补全不支持tf模块.</p>
+    </div>
+
+</section>
+
+
+    
+
+</main>
+
+                <footer class="ga-mono" id="ga-footer">
+                    <section>
+                        <span id="ga-uptime"></span>
+                        <span class="brand">Plams的个人博客</span>
+                    </section>
+                    <section>
+                        <p class="copyright">
+                            <span>Copyright © 2021 Plams</span>
+                            <span>Powered by <a no-style href="https://github.com/AlanDecode/Maverick" target="_blank">Maverick & Galileo</a></span>
+                        </p>
+                        <div class="copyright">
+                            <span class="footer-addon">
+                                
+                            </span>
+                            <nav class="social-links">
+                                <ul><li><a class="no-style" title="GitHub" href="https://github.com/lishiyuwhu" target="_blank"><i class="gi gi-github"></i>GitHub</a></li></ul>
+                            </nav>
+                        </div>
+                    </section>
+                    <script>
+                        var site_build_date = "2018-3-28T16:16+08:00"
+                    </script>
+                    <script src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/galileo-dc4baa7cf4.js"></script>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!--katex-->
+    <script defer src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/katex.min.js"></script>
+    <script>
+    mathOpts = {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+        ]
+    };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/auto-render.min.js" onload="renderMathInElement(document.body, mathOpts);"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/ExSearch/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/assets/ExSearch/ExSearch-493cb9cd89.js"></script>
+
+    
+    </body>
+</html>
