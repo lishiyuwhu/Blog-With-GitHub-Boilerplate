@@ -1,14 +1,17 @@
 ---
-layout: page
-title: 测试TEST
-slug: about
-date: 2020/02/04 16:39:00
+layout: post
+title: 标题
+slug: SLUG_test
+date: 2021-02-04 16:50
 status: publish
+author: Plams
 categories: 
-  - Dev
-tags: 
-  - theme
+  - AAA
+tags:
+  - BBB
+excerpt: 测试测试测试
 ---
+
 
 # 测试
 
