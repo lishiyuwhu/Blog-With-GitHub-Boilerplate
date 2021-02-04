@@ -15,4 +15,5 @@ http://futuremedia.szu.edu.cn/assets/files/Deep%20residual%20learning%20for%20im
 
 <!-- more -->
 
-![image-20210204155441269](/Users/plams/workspace/BLOG/Blog-With-GitHub-Boilerplate/src/images/Deep steganalysis/image-20210204155441269.png)
+![image-20210204160753641](../images/Deep steganalysis/image-20210204160753641.png)
+
