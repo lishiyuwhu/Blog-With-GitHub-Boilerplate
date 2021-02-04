@@ -13,7 +13,5 @@ http://futuremedia.szu.edu.cn/assets/files/Deep%20residual%20learning%20for%20im
 
 一个KV核, 处理图像, 后面接上resnet
 
+
 <!-- more -->
-
-![image-20210204160753641](../images/Deep steganalysis/image-20210204160753641.png)
-

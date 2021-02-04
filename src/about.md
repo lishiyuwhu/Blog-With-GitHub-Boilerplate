@@ -4,7 +4,6 @@ title: 关于
 slug: about
 date: 2017/06/28 17:26:00
 status: publish
-author: AlanDecode
 categories: 
   - Maverick
   - Dev
@@ -17,6 +16,5 @@ tags:
 
 ## Contact
 
-Email: hi#imalan.cn (replace # with @)
+Email: lishiyu.whu@gmail.com 
 
-Telegram：[AlanDecode](https://t.me/alandecode)
