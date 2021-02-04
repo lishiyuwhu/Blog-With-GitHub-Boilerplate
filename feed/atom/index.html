@@ -1,11 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN"><id>/</id><title>Plams的个人博客</title><updated>2021-02-04T08:48:55.916134+08:06</updated><author><name>Plams</name><email>lishiyu.whu@gmail.com</email></author><link href="/" rel="alternate"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><logo>https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/logo.jpeg</logo><subtitle>Destination Determination Deliberation</subtitle><entry><id>/archives/解决tmux与使用cmder ssh后的冲突问题/</id><title>解决tmux与使用cmder ssh后的冲突问题</title><updated>2021-02-04T08:48:55.916698+00:00</updated><content>&lt;p&gt;这个问题其实挺久了, cmder中ssh到别的机器之后开启tmux, 会有一大堆的排版错误.&lt;/p&gt;
-&lt;p&gt;解决办法:&lt;/p&gt;
-&lt;p&gt;(要先开启WSL)&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;bash&lt;/code&gt; 后再去ssh, 通过WSL去ssh字节缓冲就是正常的了.&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;啥时候powershell也能有个类似tmux的东西. 现在先ssh到个linux上, 开tmux, 再一个个窗口ssh到windows机器, 简直多此一举&lt;/p&gt;
-</content><link href="/archives/解决tmux与使用cmder ssh后的冲突问题/" rel="alternate"/><published>2018-12-20T13:48:00+08:06</published></entry><entry><id>/archives/ssh到win的powershell 的一堆坑/</id><title>ssh到win的powershell 的一堆坑</title><updated>2021-02-04T08:48:55.916669+00:00</updated><content>&lt;p&gt;记录一些坑&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN"><id>/</id><title>Plams的个人博客</title><updated>2021-02-04T09:01:14.084820+08:06</updated><author><name>Plams</name><email>lishiyu.whu@gmail.com</email></author><link href="/" rel="alternate"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><logo>https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/logo.jpeg</logo><subtitle>Destination Determination Deliberation</subtitle><entry><id>/archives/ssh到win的powershell 的一堆坑/</id><title>ssh到win的powershell 的一堆坑</title><updated>2021-02-04T09:01:14.085223+00:00</updated><content>&lt;p&gt;记录一些坑&lt;/p&gt;
 &lt;p&gt;server是一台win10的gpu机器, 要ssh过去做东西而不影响机主.
 client也是win10&lt;/p&gt;
 &lt;ol&gt;
@@ -25,7 +19,7 @@ client也是win10&lt;/p&gt;
 &lt;p&gt;老问题了, win不支持自带的curses.
 手工装whl
 &lt;code&gt;https://www.lfd.uci.edu/~gohlke/pythonlibs/#curses&lt;/code&gt;&lt;/p&gt;
-</content><link href="/archives/ssh到win的powershell 的一堆坑/" rel="alternate"/><published>2018-12-20T14:09:00+08:06</published></entry><entry><id>/archives/魔女 BLOG 初中級日麻講座 笔记/</id><title>魔女 BLOG 初中級日麻講座 笔记</title><updated>2021-02-04T08:48:55.916639+00:00</updated><content>&lt;p&gt;针对自己打牌的一些不良习惯的记录&lt;/p&gt;
+</content><link href="/archives/ssh到win的powershell 的一堆坑/" rel="alternate"/><published>2018-12-20T14:09:00+08:06</published></entry><entry><id>/archives/魔女 BLOG 初中級日麻講座 笔记/</id><title>魔女 BLOG 初中級日麻講座 笔记</title><updated>2021-02-04T09:01:14.085190+00:00</updated><content>&lt;p&gt;针对自己打牌的一些不良习惯的记录&lt;/p&gt;
 &lt;!-- more --&gt;
 
 &lt;ol&gt;
@@ -44,13 +38,13 @@ client也是win10&lt;/p&gt;
 &lt;li&gt;立直自摸七對裡 2 的跳滿, 是一副如何差的牌都有機會完成的役種. 當你已經無路可走時, 七對子很多時都會變成你的希望.&lt;/li&gt;
 &lt;li&gt;筋牌防守时, 注意不要考虑确定对对的那一家的筋&lt;/li&gt;
 &lt;/ol&gt;
-</content><link href="/archives/魔女 BLOG 初中級日麻講座 笔记/" rel="alternate"/><published>2019-02-28T14:35:00+08:06</published></entry><entry><id>/archives/.sh无法执行No such file or directory/</id><title>.sh无法执行No such file or directory</title><updated>2021-02-04T08:48:55.916421+00:00</updated><content>&lt;p&gt;执行.sh报错No such file or directory&lt;/p&gt;
+</content><link href="/archives/魔女 BLOG 初中級日麻講座 笔记/" rel="alternate"/><published>2019-02-28T14:35:00+08:06</published></entry><entry><id>/archives/.sh无法执行No such file or directory/</id><title>.sh无法执行No such file or directory</title><updated>2021-02-04T09:01:14.085158+00:00</updated><content>&lt;p&gt;执行.sh报错No such file or directory&lt;/p&gt;
 &lt;!-- more --&gt;
 
 &lt;p&gt;首先给权限 &lt;code&gt;chmod u+x filename&lt;/code&gt;
 然后vim里面看&lt;code&gt;:set ff&lt;/code&gt;  , 返回的fileformat是不是unix
 不是的话&lt;code&gt;:set ff=unix&lt;/code&gt;设置为unix就能够执行了&lt;/p&gt;
-</content><link href="/archives/.sh无法执行No such file or directory/" rel="alternate"/><published>2019-08-20T20:50:42+08:06</published></entry><entry><id>/archives/简单实用的python CLICK/</id><title>简单实用的python CLICK</title><updated>2021-02-04T08:48:55.916391+00:00</updated><content>&lt;p&gt;click是一个将python脚本转为命令行使用的包.
+</content><link href="/archives/.sh无法执行No such file or directory/" rel="alternate"/><published>2019-08-20T20:50:42+08:06</published></entry><entry><id>/archives/简单实用的python CLICK/</id><title>简单实用的python CLICK</title><updated>2021-02-04T09:01:14.085125+00:00</updated><content>&lt;p&gt;click是一个将python脚本转为命令行使用的包.
 类似于 Argparse  tf.FLAGS&lt;/p&gt;
 &lt;p&gt;使用非常简单, import之后, 使用&lt;code&gt;@click.command()&lt;/code&gt;以装饰器的形式附在想要使用的函数上
 然后使用&lt;code&gt;@click.option()&lt;/code&gt;添加配置信息, 最常用的就是&lt;code&gt;@click.option('--count', default=1, help='Number of greetings.')&lt;/code&gt;这种形式&lt;/p&gt;
@@ -68,7 +62,7 @@ client也是win10&lt;/p&gt;
 &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;hello&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-</content><link href="/archives/简单实用的python CLICK/" rel="alternate"/><published>2019-08-29T21:37:00+08:06</published></entry><entry><id>/archives/HQL 报错 Hive Runtime Error while closing operators/</id><title>HQL 报错 Hive Runtime Error while closing operators</title><updated>2021-02-04T08:48:55.916362+00:00</updated><content>&lt;p&gt;多个  select * from table group by key 相互join时, 会报&lt;/p&gt;
+</content><link href="/archives/简单实用的python CLICK/" rel="alternate"/><published>2019-08-29T21:37:00+08:06</published></entry><entry><id>/archives/HQL 报错 Hive Runtime Error while closing operators/</id><title>HQL 报错 Hive Runtime Error while closing operators</title><updated>2021-02-04T09:01:14.085093+00:00</updated><content>&lt;p&gt;多个  select * from table group by key 相互join时, 会报&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;[2019-09-04 21:36:48] Caused by: java.lang.RuntimeException: Hive Runtime Error while closing operators: org.apache.hadoop.hive.ql.metadata.HiveException: org.apache.hadoop.hive.ql.metadata.HiveException: java.lang.RuntimeException: org.apache.hadoop.hive.ql.metadata.HiveException: Hive Runtime Error while processing row (tag=1) {"key":{"_col0":"珠宝黄金","_col1":{0:{"_col0":"URL"}}},"value":null}
 [2019-09-04 21:36:48]   at org.apache.hadoop.hive.ql.exec.tez.ReduceRecordProcessor.close(ReduceRecordProcessor.java:328)
@@ -83,7 +77,7 @@ client也是win10&lt;/p&gt;
 &lt;p&gt;解决方法不用tez换用mr, 加上&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;set&lt;/span&gt; &lt;span class="n"&gt;hive&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;execution&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;engine&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;mr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-</content><link href="/archives/HQL 报错 Hive Runtime Error while closing operators/" rel="alternate"/><published>2019-09-04T21:39:00+08:06</published></entry><entry><id>/archives/编译tf_serving/</id><title>编译tf_serving</title><updated>2021-02-04T08:48:55.916332+00:00</updated><content>&lt;p&gt;【踩坑实录】TensorFlow Serving 安装总结
+</content><link href="/archives/HQL 报错 Hive Runtime Error while closing operators/" rel="alternate"/><published>2019-09-04T21:39:00+08:06</published></entry><entry><id>/archives/编译tf_serving/</id><title>编译tf_serving</title><updated>2021-02-04T09:01:14.085060+00:00</updated><content>&lt;p&gt;【踩坑实录】TensorFlow Serving 安装总结
 &lt;a href="https://zhuanlan.zhihu.com/p/55108743"&gt;https://zhuanlan.zhihu.com/p/55108743&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;TENSORFLOW-SERVING-GPU 本地编译并使用
 &lt;a href="https://www.cnblogs.com/YouXiangLiThon/p/8295499.html"&gt;https://www.cnblogs.com/YouXiangLiThon/p/8295499.html&lt;/a&gt;
@@ -175,14 +169,14 @@ python tensorflow_serving/example/mnist_client.py --num_tests=1000 --server=127.
 &lt;blockquote&gt;&lt;p&gt;Inference error rate: 10.4%
 ```&lt;/p&gt;
 &lt;/blockquote&gt;
-</content><link href="/archives/编译tf_serving/" rel="alternate"/><published>2019-09-22T15:48:00+08:06</published></entry><entry><id>/archives/解决_csv.Error line contains NULL byte/</id><title>解决_csv.Error line contains NULL byte</title><updated>2021-02-04T08:48:55.916301+00:00</updated><content>&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;fi&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;dev.tsv&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;rb&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+</content><link href="/archives/编译tf_serving/" rel="alternate"/><published>2019-09-22T15:48:00+08:06</published></entry><entry><id>/archives/解决_csv.Error line contains NULL byte/</id><title>解决_csv.Error line contains NULL byte</title><updated>2021-02-04T09:01:14.085027+00:00</updated><content>&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;fi&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;dev.tsv&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;rb&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fi&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="n"&gt;fi&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="n"&gt;fo&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;dev&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;wb&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;fo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;b&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\x00&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sa"&gt;b&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;span class="n"&gt;fo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;!-- more --&gt;</content><link href="/archives/解决_csv.Error line contains NULL byte/" rel="alternate"/><published>2019-09-28T21:01:00+08:06</published></entry><entry><id>/archives/pytorch的dataloader输出大小不一样的batch/</id><title>pytorch的dataloader输出大小不一样的batch</title><updated>2021-02-04T08:48:55.916265+00:00</updated><content>&lt;h1&gt;pytorch的dataloader输出大小不一样的batch&lt;/h1&gt;
+&lt;!-- more --&gt;</content><link href="/archives/解决_csv.Error line contains NULL byte/" rel="alternate"/><published>2019-09-28T21:01:00+08:06</published></entry><entry><id>/archives/pytorch的dataloader输出大小不一样的batch/</id><title>pytorch的dataloader输出大小不一样的batch</title><updated>2021-02-04T09:01:14.084993+00:00</updated><content>&lt;h1&gt;pytorch的dataloader输出大小不一样的batch&lt;/h1&gt;
 &lt;h2&gt;问题出现&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MYDATASET&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Dataset&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;soft_data_dir&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;transforms_&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -251,7 +245,7 @@ python tensorflow_serving/example/mnist_client.py --num_tests=1000 --server=127.
 &lt;span class="c1"&gt;########################################################################&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;这样, 简单的在my_collate_fn中把list拆开手动使用torch.stack合并各项, 就可以正确得到各个nchw的batch数据了&lt;/p&gt;
-</content><link href="/archives/pytorch的dataloader输出大小不一样的batch/" rel="alternate"/><published>2020-10-14T21:31:00+08:06</published></entry><entry><id>/archives/torch.upsample转ONNX的问题/</id><title>torch.upsample转ONNX的问题</title><updated>2021-02-04T08:48:55.916199+00:00</updated><content>&lt;h1&gt;问题&lt;/h1&gt;
+</content><link href="/archives/pytorch的dataloader输出大小不一样的batch/" rel="alternate"/><published>2020-10-14T21:31:00+08:06</published></entry><entry><id>/archives/torch.upsample转ONNX的问题/</id><title>torch.upsample转ONNX的问题</title><updated>2021-02-04T09:01:14.084953+00:00</updated><content>&lt;h1&gt;问题&lt;/h1&gt;
 &lt;p&gt;转换nn.Upsample到onnx再到TNN的时候总会出些问题&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;This operator might cause results to not match the expected results by PyTorch.
@@ -285,4 +279,6 @@ We recommend using opset 11 and above for models using this operator.&lt;/code&g
 
 &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;system&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;python -m onnxsim tmp.onnx &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;onnx_path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-</content><link href="/archives/torch.upsample转ONNX的问题/" rel="alternate"/><published>2020-10-16T21:51:00+08:06</published></entry></feed>
+</content><link href="/archives/torch.upsample转ONNX的问题/" rel="alternate"/><published>2020-10-16T21:51:00+08:06</published></entry><entry><id>/archives/SLUG_test/</id><title>标题</title><updated>2021-02-04T09:01:14.084885+00:00</updated><author><name>Plams</name><email>lishiyu.whu@gmail.com</email><uri>https://www.Plams.me</uri></author><content>&lt;h1&gt;测试&lt;/h1&gt;
+&lt;p&gt;&lt;figure style="flex: 21.506849315068493" &gt;&lt;img width="157" height="365" src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/archives/assets/7dcb8093c407e609bceef2b0305b36fb.png" /&gt;&lt;figcaption&gt;image-20210204164530910&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+</content><link href="/archives/SLUG_test/" rel="alternate"/><published>2021-02-04T16:50:00+08:06</published></entry></feed>
