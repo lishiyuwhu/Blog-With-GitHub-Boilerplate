@@ -1,25 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Plams的个人博客</title><link>/</link><description>Destination Determination Deliberation</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/logo.jpeg</url><title>Plams的个人博客</title><link>/</link></image><language>zh-CN</language><lastBuildDate>Thu, 04 Feb 2021 09:01:14 +0806</lastBuildDate><pubDate>Thu, 04 Feb 2021 09:01:14 +0806</pubDate><item><title>ssh到win的powershell 的一堆坑</title><link>/archives/ssh到win的powershell 的一堆坑/</link><description>&lt;p&gt;记录一些坑&lt;/p&gt;
-&lt;p&gt;server是一台win10的gpu机器, 要ssh过去做东西而不影响机主.
-client也是win10&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;powershell 没法使用conda的activate&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;!-- more --&gt;
-&lt;a href="https://stackoverflow.com/questions/47800794/how-to-activate-different-anaconda-environment-from-powershell"&gt;https://stackoverflow.com/questions/47800794/how-to-activate-different-anaconda-environment-from-powershell&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;conda install -n root -c pscondaenvs pscondaenvs&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;然而并没卵用&lt;/p&gt;
-&lt;p&gt;conda 号称4.6版本修正了这个问题, 使用&lt;code&gt;conda install -c conda-canary conda&lt;/code&gt;安装测试版
-然并卵&lt;/p&gt;
-&lt;p&gt;解决:&lt;/p&gt;
-&lt;p&gt;先在cmd里面 &lt;code&gt;activate&lt;/code&gt;之后再进powershell&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;curses 错误&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;老问题了, win不支持自带的curses.
-手工装whl
-&lt;code&gt;https://www.lfd.uci.edu/~gohlke/pythonlibs/#curses&lt;/code&gt;&lt;/p&gt;
-</description><author>lishiyu.whu@gmail.com</author><guid isPermaLink="true">/archives/ssh到win的powershell 的一堆坑/</guid><pubDate>Thu, 20 Dec 2018 14:09:00 +0806</pubDate></item><item><title>魔女 BLOG 初中級日麻講座 笔记</title><link>/archives/魔女 BLOG 初中級日麻講座 笔记/</link><description>&lt;p&gt;针对自己打牌的一些不良习惯的记录&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Plams的个人博客</title><link>/</link><description>Destination Determination Deliberation</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/logo.jpeg</url><title>Plams的个人博客</title><link>/</link></image><language>zh-CN</language><lastBuildDate>Fri, 05 Feb 2021 02:22:09 +0806</lastBuildDate><pubDate>Fri, 05 Feb 2021 02:22:09 +0806</pubDate><item><title>魔女 BLOG 初中級日麻講座 笔记</title><link>/archives/魔女 BLOG 初中級日麻講座 笔记/</link><description>&lt;p&gt;针对自己打牌的一些不良习惯的记录&lt;/p&gt;
 &lt;!-- more --&gt;
 
 &lt;ol&gt;
@@ -279,6 +259,83 @@ We recommend using opset 11 and above for models using this operator.&lt;/code&g
 
 &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;system&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;python -m onnxsim tmp.onnx &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;onnx_path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-</description><author>lishiyu.whu@gmail.com</author><guid isPermaLink="true">/archives/torch.upsample转ONNX的问题/</guid><pubDate>Fri, 16 Oct 2020 21:51:00 +0806</pubDate></item><item><title>标题</title><link>/archives/SLUG_test/</link><description>&lt;h1&gt;测试&lt;/h1&gt;
-&lt;p&gt;&lt;figure style="flex: 21.506849315068493" &gt;&lt;img width="157" height="365" src="https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/archives/assets/7dcb8093c407e609bceef2b0305b36fb.png" /&gt;&lt;figcaption&gt;image-20210204164530910&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
-</description><author>lishiyu.whu@gmail.com (Plams)</author><guid isPermaLink="true">/archives/SLUG_test/</guid><pubDate>Thu, 04 Feb 2021 16:50:00 +0806</pubDate></item></channel></rss>
+</description><author>lishiyu.whu@gmail.com</author><guid isPermaLink="true">/archives/torch.upsample转ONNX的问题/</guid><pubDate>Fri, 16 Oct 2020 21:51:00 +0806</pubDate></item><item><title>TNN源码阅读笔记_1</title><link>/archives/TNN源码阅读笔记_1/</link><description>&lt;p&gt;TNN相关核心源码阅读.&lt;/p&gt;
+&lt;h1&gt;API接口&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;include
+└── tnn
+    ├── core
+    │   ├── blob.h
+    │   ├── common.h
+    │   ├── instance.h
+    │   ├── macro.h
+    │   ├── mat.h
+    │   ├── status.h
+    │   └── tnn.h
+    ├── utils
+    │   ├── bfp16_utils.h
+    │   ├── blob_converter.h
+    │   ├── cpu_utils.h
+    │   ├── data_type_utils.h
+    │   ├── dims_vector_utils.h
+    │   ├── half.hpp
+    │   ├── half_utils.h
+    │   ├── mat_utils.h
+    │   └── string_utils.h
+    └── version.h
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;tnn对外的接口, 包括核心推理相关以及辅助的半精度/矩阵/字符串函数. 略过&lt;/p&gt;
+&lt;p&gt;TNN的大版本0.0.2, 第一次大更新后的版本&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;pre&gt;&lt;code&gt;static char *branch_name_tnn = "master";
+static char *commit_date_tnn = "2020-10-20";
+static char *commit_hash_tnn = "0dc11ef";&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+&lt;h1&gt;tnn/core/abstract_device&lt;/h1&gt;
+&lt;p&gt;包含抽象设备接口以及对应的注册方法&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;DeviceType&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;shared_ptr&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;AbstractDevice&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;GetGlobalDeviceMap&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;once_flag&lt;/span&gt; &lt;span class="n"&gt;once&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;shared_ptr&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;DeviceType&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;shared_ptr&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;AbstractDevice&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;device_map&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;call_once&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;once&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[]()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;device_map&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reset&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;DeviceType&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;shared_ptr&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;AbstractDevice&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="p"&gt;});&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;device_map&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;GetGlobalDeviceMap中使用了std::call_once来保证只初始化一次device_map,  同时使用了静态局部变量device_map来管理注册的device, 有点类似于一个单例工厂的模板注册形式.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// @brief TypeDeviceRegister contruct register device&lt;/span&gt;
+&lt;span class="k"&gt;template&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="k"&gt;typename&lt;/span&gt; &lt;span class="nc"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;TypeDeviceRegister&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="k"&gt;public&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;explicit&lt;/span&gt; &lt;span class="n"&gt;TypeDeviceRegister&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;DeviceType&lt;/span&gt; &lt;span class="n"&gt;type&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;auto&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;device_map&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GetGlobalDeviceMap&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;device_map&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;type&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;device_map&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="n"&gt;device_map&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;type&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;shared_ptr&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;type&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;是一个注册类, 在runtime的时候添加对应的设备.&lt;/p&gt;
+&lt;h1&gt;tnn/core/abstract_layer_acc&lt;/h1&gt;
+&lt;p&gt;整体结构类似于bastract_device.&lt;/p&gt;
+&lt;p&gt;其中Status AbstractLayerAcc::ResolveBlobDataFormat(Blob *blob) 根据不同的backend device 来设置各blob的data_format, 例如对于ARM:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;DataFormat&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;ArmLayerAcc&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;SupportDataFormat&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;DataType&lt;/span&gt; &lt;span class="n"&gt;data_type&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;dims_size&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;DataFormat&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;support_list&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dims_size&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data_type&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;DATA_TYPE_FLOAT&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;data_type&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;DATA_TYPE_BFP16&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;support_list&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;push_back&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;DATA_FORMAT_NC4HW4&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="nf"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data_type&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;DATA_TYPE_INT8&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;support_list&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;push_back&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;DATA_FORMAT_NHWC4&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="nf"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data_type&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;DATA_TYPE_HALF&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="n"&gt;support_list&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;push_back&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;DATA_FORMAT_NC8HW8&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;support_list&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;就以这个顺序来设定data_format. (可能其他backend的support format可以有多种, 所以这里扔回来了一个vec)&lt;/p&gt;
+&lt;h1&gt;tnn/core/abstract_network&lt;/h1&gt;
+&lt;p&gt;一个标准的 产品注册模板类(NetworkImplFactoryRegister)+单例工厂模板类(NetworkImplManager).&lt;/p&gt;
+</description><author>lishiyu.whu@gmail.com (Plams)</author><guid isPermaLink="true">/archives/TNN源码阅读笔记_1/</guid><pubDate>Thu, 04 Feb 2021 17:30:00 +0806</pubDate></item><item><title>TNN源码阅读笔记_2</title><link>/archives/TNN源码阅读笔记_2/</link><description>&lt;h1&gt;tnn/core/blob&lt;/h1&gt;
+&lt;p&gt;数据存储的相关接口.   blob中分为两块 BlobDesc保存着 设备/精度/格式/维度/别名 这些信息, 真正的数据存储在BlobHandle中的指针中&lt;/p&gt;
+&lt;p&gt;涉及到内存相关的 allocate/set/free 的操作, 都是用 auto device = GetDevice(desc_.device_type); 拿到对应的设备, 再调用设备各自的方法实现&lt;/p&gt;
+&lt;h1&gt;tnn/core/blob_int8&lt;/h1&gt;
+&lt;p&gt;blob_int8是blob的子类, 中间加上了int8 layer的resources保存,&lt;/p&gt;
+</description><author>lishiyu.whu@gmail.com (Plams)</author><guid isPermaLink="true">/archives/TNN源码阅读笔记_2/</guid><pubDate>Thu, 04 Feb 2021 21:37:00 +0806</pubDate></item></channel></rss>
