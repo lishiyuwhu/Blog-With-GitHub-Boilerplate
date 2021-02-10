@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Plams的个人博客</title><link>/</link><description>Destination Determination Deliberation</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/logo.jpeg</url><title>Plams的个人博客</title><link>/</link></image><language>zh-CN</language><lastBuildDate>Fri, 05 Feb 2021 02:22:09 +0806</lastBuildDate><pubDate>Fri, 05 Feb 2021 02:22:09 +0806</pubDate><item><title>魔女 BLOG 初中級日麻講座 笔记</title><link>/archives/魔女 BLOG 初中級日麻講座 笔记/</link><description>&lt;p&gt;针对自己打牌的一些不良习惯的记录&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Plams的个人博客</title><link>/</link><description>Destination Determination Deliberation</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.jsdelivr.net/gh/lishiyuwhu/Blog-With-GitHub-Boilerplate@gh-pages/logo.jpeg</url><title>Plams的个人博客</title><link>/</link></image><language>zh-CN</language><lastBuildDate>Wed, 10 Feb 2021 09:36:57 +0806</lastBuildDate><pubDate>Wed, 10 Feb 2021 09:36:57 +0806</pubDate><item><title>魔女 BLOG 初中級日麻講座 笔记</title><link>/archives/魔女 BLOG 初中級日麻講座 笔记/</link><description>&lt;p&gt;针对自己打牌的一些不良习惯的记录&lt;/p&gt;
 &lt;!-- more --&gt;
 
 &lt;ol&gt;
@@ -338,4 +338,30 @@ static char *commit_hash_tnn = "0dc11ef";&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;涉及到内存相关的 allocate/set/free 的操作, 都是用 auto device = GetDevice(desc_.device_type); 拿到对应的设备, 再调用设备各自的方法实现&lt;/p&gt;
 &lt;h1&gt;tnn/core/blob_int8&lt;/h1&gt;
 &lt;p&gt;blob_int8是blob的子类, 中间加上了int8 layer的resources保存,&lt;/p&gt;
+&lt;h1&gt;tnn/core/blob_manager&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;NetworkConfig&lt;/span&gt; &lt;span class="n"&gt;config_&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;NetStructure&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;net_structure_&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;BlobMemoryPool&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;blob_memory_pool_&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;AbstractDevice&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;device_&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;BlobMap&lt;/span&gt; &lt;span class="n"&gt;input_blobs_&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;BlobMap&lt;/span&gt; &lt;span class="n"&gt;output_blobs_&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;shared_ptr&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;MemoryAssignStrategy&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;strategy_&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Blob&lt;/span&gt; &lt;span class="o"&gt;*&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;blobs_&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Blob&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;BlobMemory&lt;/span&gt; &lt;span class="o"&gt;*&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;blob_memory_mapping_&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="kr"&gt;thread&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt; &lt;span class="n"&gt;init_thread_id_&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;MemoryModeState&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;memory_mode_state_&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;负责持有相关资源, 内存池等.&lt;/p&gt;
+&lt;p&gt;init的时候会把相关layer_blob, input_blob, out_blob都分配到各自的blob map中, 但并没有分配内存. 调用AllocateBlobMemory()的时候才会真正的根据device的情况分配内存. 同时也会给各个blob添加引用计数, 方便空间重用&lt;/p&gt;
+&lt;h1&gt;tnn/core/context&lt;/h1&gt;
+&lt;p&gt;context接口类.  不同的device自己实现不同的方法来管理context.&lt;/p&gt;
+&lt;h1&gt;tnn/core/default_network&lt;/h1&gt;
+&lt;p&gt;AbstractNetwork的实现类. 网络前向相关的操作就在这里.&lt;/p&gt;
+&lt;p&gt;DefaultNetwork::optimize&lt;em&gt;mtx&lt;/em&gt; 是一个静态变量实现的互斥锁, 防止在算子融合的时候, 改变network structure等相关资源&lt;/p&gt;
+&lt;p&gt;DefaultNetwork::InitLayers 中, 会判断下网络是否含有量化层, 后续设置UpdateBlobPrecision时候有不同的实现.&lt;/p&gt;
+&lt;p&gt;如果layer中的LayerParam是量化的, 且对应的desc是非量化的, 则会将其转换一个一个int8Blob.&lt;/p&gt;
+&lt;p&gt;forward分为两种带Async和不带Async的, 区别在于一个加了"同步锁"一个是直接跑的&lt;/p&gt;
+&lt;h1&gt;tnn/core/instance&lt;/h1&gt;
+&lt;p&gt;Instance是真正对外暴露执行推理操作的单元, 内部保存了network相关资源和配置&lt;/p&gt;
 </description><author>lishiyu.whu@gmail.com (Plams)</author><guid isPermaLink="true">/archives/TNN源码阅读笔记_2/</guid><pubDate>Thu, 04 Feb 2021 21:37:00 +0806</pubDate></item></channel></rss>
